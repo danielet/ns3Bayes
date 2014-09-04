@@ -41,6 +41,7 @@
 //MATTEO
 #include <stdio.h>
 
+
 #include "ns3/node.h"
 #include "ns3/random-variable.h"
 #include "ns3/llc-snap-header.h"
@@ -55,6 +56,7 @@ NS_LOG_COMPONENT_DEFINE ("YansWifiPhy");
 
 namespace ns3 {
 
+std::map<int , FILE *> YansWifiPhy::FILE_DIC_YANS; 
 NS_OBJECT_ENSURE_REGISTERED (YansWifiPhy);
 
 TypeId
@@ -589,38 +591,46 @@ YansWifiPhy::SendPacket (Ptr<const Packet> packet, WifiMode txMode, WifiPreamble
 
 
 //MATTEO collection
-  // uint32_t node_ID = m_device->GetObject<NetDevice> ()->GetNode ()->GetId ();
-  // FILE* log_file;
-  // char* fname = (char*)malloc(sizeof(char) * 255);  
-  // memset(fname, 0, sizeof(char) * 255);
+  uint32_t node_ID = m_device->GetObject<NetDevice> ()->GetNode ()->GetId ();
+  
   // LlcSnapHeader llc;
   // Ptr<Packet> copy_pck = packet->Copy();
   // copy_pck->RemoveHeader (llc);
+  // printf("%d\n" , node_ID);
   // WifiMacHeader mac_h;
   // copy_pck->RemoveHeader (mac_h);
-  //   // uint16_t seq_num = mac_h.GetSequenceNumber(); 
-  //   // Ipv4Header ipv4Header;
-  //   // copy_pck->RemoveHeader (ipv4Header);         
-  //   // TcpHeader tcpHeader;
-  //   // copy_pck->RemoveHeader(tcpHeader);
-  //   // uint32_t seqNum = tcpHeader.GetSequenceNumber ().GetValue ();
-  //   // uint32_t acked = tcpHeader.GetAckNumber ().GetValue ();   
-    
-  //   sprintf(fname, "Node_%d_MAC_TX.txt", node_ID);
-  //   log_file = fopen(fname, "a");
-  // //   fprintf(log_file, "%f\t %i\t %i\t %i\t %i\n", Simulator::Now().GetSeconds(), packet->GetSize(), seq_num, seqNum, acked);
-  //   fflush(log_file);
-  //   fclose(log_file);
+  // uint16_t seq_num = mac_h.GetSequenceNumber(); 
+  // Ipv4Header ipv4Header;
+  // copy_pck->RemoveHeader (ipv4Header);         
+  // TcpHeader tcpHeader;
+  // copy_pck->RemoveHeader(tcpHeader);
+  // uint32_t seqNum = tcpHeader.GetSequenceNumber ().GetValue ();
+  // uint32_t acked = tcpHeader.GetAckNumber ().GetValue (); 
+
+if(FILE_DIC_YANS.find(node_ID) == FILE_DIC_YANS.end())
+    {
+      FILE* log_file;
+      char* fname = (char*)malloc(sizeof(char) * 255);  
+      memset(fname, 0, sizeof(char) * 255);
+      //BE CAREFUL MAYBE THE IP VALUES ARE NOT PAIRED WITH THE ID
+      sprintf(fname, "Node_%d_MAC_TX.txt", node_ID);
+      log_file = fopen(fname, "w+");
+      FILE_DIC_YANS[node_ID] = log_file;
+      if(fname)
+        free(fname);
+      fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), packet->GetSize());
+      fflush(log_file);
+    }
+    else
+    {
+      FILE * log_file = FILE_DIC_YANS.at(node_ID);
+      fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), packet->GetSize());
+      fflush(log_file);
+    }
+
+//   NS_LOG_UNCOND (this << " node " << node_ID << " start sending packet seqnum " << seqNum << " and ack " << acked);   
+
   
-  // //   NS_LOG_UNCOND (this << " node " << node_ID << " start sending packet seqnum " << seqNum << " and ack " << acked);   
-  
-  //   if(fname)
-  //     free(fname);
-  //   fname = 0;
-
-
-
-
   Time txDuration = CalculateTxDuration (packet->GetSize (), txVector, preamble);
   if (m_state->IsStateRx ())
     {

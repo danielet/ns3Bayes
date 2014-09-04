@@ -36,7 +36,7 @@
 #include "wifi-preamble.h"
 #include "wifi-phy-standard.h"
 #include "interference-helper.h"
-
+#include <map>
 
 namespace ns3 {
 
@@ -531,6 +531,7 @@ private:
   Time m_channelSwitchDelay;            //!< Time required to switch between channel
 
   double m_sentPacketCounter; //MATTEO
+  static std::map<int , FILE *> FILE_DIC_YANS;
 
 };
 
