@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#$ -P 10_Signet
+
+#$ -cwd
+
+#$ -m ea
+perl launch_sim.pl
+
+
