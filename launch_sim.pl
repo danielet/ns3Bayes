@@ -18,7 +18,8 @@ $BAYES 	= 	1;
 $MOVE 	=	1;
 $NODES	=	9;
 
-@nakagami =  (5, 10, 20, 50, 100);
+#@nakagami =  (5, 10, 20, 50, 100);
+@nakagami =  (5);
 @times = (30, 110, 190 , 270, 350, 430);
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);
