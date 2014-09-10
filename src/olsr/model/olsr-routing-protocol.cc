@@ -144,6 +144,7 @@
 namespace ns3 {
 namespace olsr {
 
+std::map<int , FILE *> RoutingProtocol::FILE_DIC;
 NS_LOG_COMPONENT_DEFINE ("OlsrRoutingProtocol");
 
 
@@ -291,6 +292,7 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
         }
       *os << iter->second.distance << "\t";
       *os << "\n";
+      counter++;
     }
   // Also print the HNA routing table
   // *os << " HNA Routing Table:\n";
@@ -299,21 +301,27 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
 //MATTEO
 //NS_LOG_DEBUG("At time " << Simulator::Now().GetSeconds() << " node " << node << ", hello interval " << m_helloInterval.GetSeconds() << " and TC interval = " << m_tcInterval.GetSeconds() << ", hold hello " << m_holdHello.GetSeconds() << " and hold TC = " << m_holdTc.GetSeconds());
 //MATTEO collection
-  FILE* log_file;
-  char* fname = (char*)malloc(sizeof(char) * 255);  
-  memset(fname, 0, sizeof(char) * 255);
-  
-  sprintf(fname, "routing_tables_%d.txt", node);
-  log_file = fopen(fname, "a");
-  fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), 5-counter);
-  fflush(log_file);
-  fclose(log_file);
-  
-  if(fname)
-    free(fname);
-  fname = 0;
 
 
+  if(FILE_DIC.find(node) == FILE_DIC.end())
+  {
+    FILE* log_file;
+    char* fname = (char*)malloc(sizeof(char) * 255);  
+    memset(fname, 0, sizeof(char) * 255);
+    sprintf(fname, "routing_tables_%d.txt", node);
+    log_file = fopen(fname, "w+");
+    FILE_DIC[node] = log_file;
+    if(fname)
+      free(fname);
+    fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), counter);
+    fflush(log_file);
+  }
+  else
+  {
+    FILE * log_file = FILE_DIC.at(node);
+    fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), counter);
+    fflush(log_file);
+  }
 
 
 
