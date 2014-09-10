@@ -2,3 +2,4 @@ build/*
 *.o
 *.pyc
 *.job.*
+.lock-waf_linux2_build

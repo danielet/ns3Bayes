@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#$ -P 10_Signet
+
+#$ -cwd
+
+#$ -m ea
+./waf configure
+./waf
+#perl launch_sim.pl
+
+
