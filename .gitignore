@@ -3,3 +3,4 @@ build/*
 *.pyc
 *.job.*
 .lock-waf_linux2_build
+launch_sim.pl

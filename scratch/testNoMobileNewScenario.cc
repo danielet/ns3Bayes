@@ -39,79 +39,102 @@
 
 
 #include <cmath> 
+#include <iostream>
+#include <fstream>
 
 using namespace ns3;
 using namespace olsr;
-
-NS_LOG_COMPONENT_DEFINE ("flow_mobility");
+std::ofstream fileMove;
+Gnuplot2dDataset m_output;
+NS_LOG_COMPONENT_DEFINE ("cognitive_net_mobility");
 /*********************************************************************************************************************************
 MOBILITY FUNCtiONS
 ********************************************************************************************************************************/
 void 
-Start_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2)
+Start_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2 , int id1 , int id2 )
 {
 	//MODEL 1
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (2.0, 0.0, 0.0));
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	//MODEL 2
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	pos2->SetVelocity(Vector (-2.0, 0.0, 0.0));
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 }
 
 void 
-Back_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2)
+Back_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2 , int id1 , int id2 )
 {
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (-2.0, 0.0, 0.0));
+	fileMove  << id1 << " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
+	fileMove  << id2 << " "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	pos2->SetVelocity(Vector (2.0, 0.0, 0.0));
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 void 
-Stop(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2)
+Stop(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, 0.0, 0.0));
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, 0.0, 0.0));
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 
 void 
-Start_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2)
+Start_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
 	//MODEL 1
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, 2.0, 0.0));
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
 	//MODEL 2
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, -2.0, 0.0));
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 void 
-Back_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2)
+Back_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, -2.0, 0.0));
+	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, 2.0, 0.0));
+	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
-Gnuplot2dDataset m_output;
+
 
 Vector GetPosition (Ptr<Node> node)
 	{
@@ -126,7 +149,10 @@ Vector GetPosition (Ptr<Node> node)
 	
 	Ptr<MobilityModel> mobility = node->GetObject<MobilityModel> ();
 	printf("NODE %2d -- %u.%u.%u.%-2u  (%4.2f;%3.2f;%3.2f;%3.2f)\n" , node->GetId() ,((ipAdd >> 24)  & 0xff) , ((ipAdd >> 16)  & 0xff) ,((ipAdd >> 8)  & 0xff) ,((ipAdd >> 0)  & 0xff)  ,mobility->GetPosition().x , mobility->GetPosition().y , mobility->GetVelocity().x ,mobility->GetVelocity().y);
-	m_output.Add(mobility->GetPosition().x , mobility->GetPosition().y);
+	
+	// fprintf(fileMove ,"NODE %2d -- %u.%u.%u.%-2u  (%4.2f;%3.2f;%3.2f;%3.2f)\n" , node->GetId(),
+	// 	((ipAdd >> 24)  & 0xff) , ((ipAdd >> 16)  & 0xff) ,((ipAdd >> 8)  & 0xff) ,((ipAdd >> 0)  & 0xff)  ,mobility->GetPosition().x , mobility->GetPosition().y , mobility->GetVelocity().x ,mobility->GetVelocity().y);
+	// m_output.Add(mobility->GetPosition().x , mobility->GetPosition().y);
 	return mobility->GetPosition ();
 }
 
@@ -165,6 +191,13 @@ main (int argc, char *argv[])
 	//PARAMETRO CHE PASSO DA RIGA DI COMMANDO 
 	int n_nodes = atoi(argv[3]); // # nodes  
 
+
+	fileMove.open("positionLog.txt");
+	if (!fileMove.is_open()) { 
+		printf("ERROR ---------- \n");
+	}
+
+	
 /************************
 		GNUPLOT
 *************************/
@@ -333,28 +366,28 @@ else
 		{	
 			switch (t){
 				case 0:// CHANGE POSITION (1,2)
-				Simulator::Schedule(Seconds(times[t]),&Start_X,model1,model2);   
-	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2);  
+				Simulator::Schedule(Seconds(times[t]),&Start_X,model1,model2 , 2, 3);   
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2 , 2,  3);  
 			break;
 				case 1:// CHANGE POSITION (1,6)
-				Simulator::Schedule(Seconds(times[t]),&Start_Y,model1,model6);              
-	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model6);
+				Simulator::Schedule(Seconds(times[t]),&Start_Y,model1,model6, 1 ,6);              
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model6, 1, 6);
 			break;
 				case 2: //CHANGE POSITION (6,3)
-				Simulator::Schedule(Seconds(times[t]),&Start_X,model6,model3);              
-	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3);
+				Simulator::Schedule(Seconds(times[t]),&Start_X,model6,model3 , 6 ,3);              
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3, 6 ,3);
 			break;
 				case 3://BACK CHANGE POSITION (3,6)
-					Simulator::Schedule(Seconds(times[t]),&Back_X,model6,model3); 
-		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3);            
+					Simulator::Schedule(Seconds(times[t]),&Back_X,model6,model3, 6 ,3); 
+		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3 , 6 ,3);            
 			break;
 				case 4: //BACK CHANGE POSITION (6,1)
-					Simulator::Schedule(Seconds(times[t]),&Back_Y,model1,model6); 
-		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model6);            
+					Simulator::Schedule(Seconds(times[t]),&Back_Y,model1,model6 , 1,6); 
+		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model6, 1,6);            
 			break;
 				case 5: //BACK CHANGE POSITION (2,1)
-					Simulator::Schedule(Seconds(times[t]),&Back_X,model1,model2); 
-		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2);            
+					Simulator::Schedule(Seconds(times[t]),&Back_X,model1,model2, 1,2); 
+		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2,1,2);            
 			break;
 			}
 	    }
@@ -482,6 +515,6 @@ if(atoi(argv[5]) == 1){
 	Simulator::Stop (Seconds (SimuTime));
 	Simulator::Run ();
 	Simulator::Destroy ();
-
+	fileMove.close();
 	return 0;
 }
