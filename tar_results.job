@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#$ -P 10_Signet
+
+#$ -cwd
+
+#$ -m ea
+
+tar -cf crossNoMobNoBayes.tar crossNoMobNoBayes

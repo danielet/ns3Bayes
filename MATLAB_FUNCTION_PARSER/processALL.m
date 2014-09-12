@@ -1,7 +1,7 @@
 clc
 close all
 clear all
-ctrOTHER =0;
+ctrOTHER = 1;
 % global folders sub_folders gi gj
 % ii=1;
 folders=dir;
