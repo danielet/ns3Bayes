@@ -54,7 +54,7 @@ for gi=1:size(folders,1)
                 varDir = fullfile(varDir);
                 mkdir(varDir, nameEXP);
                 tic
-                main(offM , ii , varDir ,nameEXP ,ctrOTHER); % execute the script for processing and testing 
+                main( varDir ,nameEXP ,ctrOTHER); % execute the script for processing and testing 
                 toc
                 cd ..
                 ii=ii+1;
