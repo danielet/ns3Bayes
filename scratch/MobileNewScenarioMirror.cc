@@ -186,7 +186,7 @@ main (int argc, char *argv[])
 
 	int ii ;
 	
-	int SimuTime = 1000;
+	int SimuTime = 800;
 
 	uint16_t port = 20; // FTP port number
 	uint32_t maxBytes = 1000*1000; // xx MB
@@ -300,7 +300,6 @@ else
 	Ptr<ListPositionAllocator> positionAlloc_mobile = CreateObject<ListPositionAllocator> ();
 
 	double in_pos = 0.0;
-	//PERCHE' 100m?? 802.11a non tira fino a 50m?!
 	
 
 	//FIRST H NODE SETTED UP
@@ -321,7 +320,7 @@ else
 	for (;ii <= n_nodes; ii++)
 	{
 		if(ii != 7 ){
-			if(ii != 6){
+			if(!(ii == 6 || ii == 8 )){
 	    		positionAlloc_fix->Add (Vector (200.0,in_pos , 0.0));
 	    	}else{
 				positionAlloc_mobile->Add (Vector (200.0,in_pos , 0.0));
@@ -342,7 +341,7 @@ else
 
 	for (ii = 0; ii < n_nodes; ii++)
 	{
-		if((ii>0 && ii < 4)|| (ii == 6)){
+		if((ii>0 && ii < 4) || (ii == 6) ||(ii == 7)){
 			mobile_node.Install(nodes.Get(ii));      
 		}else{
 			fix_node.Install(nodes.Get(ii));      	
@@ -358,11 +357,12 @@ else
 
 //QUESTO E' IL MODELLO DI MOVIMENTO A CROCE    
 	if(atoi(argv[4]) == 1){
-		double times[6] = {atof(argv[6]), atof(argv[7]), atof(argv[8]), atof(argv[9]), atof(argv[10]), atof(argv[11])};
+		double times[8] = {atof(argv[6]), atof(argv[7]), atof(argv[8]), atof(argv[9]), atof(argv[10]), atof(argv[11]), atof(argv[12]), atof(argv[13])};
 		Ptr<ConstantVelocityMobilityModel> model1 = nodes.Get(1)->GetObject<ConstantVelocityMobilityModel> ();             			
 		Ptr<ConstantVelocityMobilityModel> model2 = nodes.Get(2)->GetObject<ConstantVelocityMobilityModel> ();             
 		Ptr<ConstantVelocityMobilityModel> model3 = nodes.Get(3)->GetObject<ConstantVelocityMobilityModel> ();
 		Ptr<ConstantVelocityMobilityModel> model6 = nodes.Get(6)->GetObject<ConstantVelocityMobilityModel> ();
+		Ptr<ConstantVelocityMobilityModel> model7 = nodes.Get(7)->GetObject<ConstantVelocityMobilityModel> ();
 		
 	    for (int t = 0; t < 8; t++)
 		{	
@@ -381,13 +381,13 @@ else
 			break;
 //NEW
 				case 3: //CHANGE POSITION (3,7)
-				Simulator::Schedule(Seconds(times[t]),&Start_X,model6,model3 , 3 ,7);              
-	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3, 3 ,7);
+				Simulator::Schedule(Seconds(times[t]),&Start_Y,model7,model3 , 7 ,3);              
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model7,model3, 7 ,3);
 				break;
 				
 				case 4://CHANGE POSITION (7,3)
-				Simulator::Schedule(Seconds(times[t]),&Start_X,model6,model3 , 3 ,7);              
-	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3, 3 ,7);
+				Simulator::Schedule(Seconds(times[t]),&Back_Y,model7,model3 , 7 ,3);              
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model7,model3, 7 ,3);
 
 				break;
 
