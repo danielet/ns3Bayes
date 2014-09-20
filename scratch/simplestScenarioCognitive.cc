@@ -266,7 +266,7 @@ if(atoi(argv[4]) == 0)
 	positionAlloc->Add (Vector (in_pos, 0.0, 0.0));
 
 	//HORIZONTAL CHAIN
-	for (ii = 1; ii < nodes; ii++)
+	for (ii = 1; ii < n_nodes; ii++)
 	{
         in_pos = in_pos + mov_pos;
 	    positionAlloc->Add (Vector (in_pos, 0.0, 0.0));
