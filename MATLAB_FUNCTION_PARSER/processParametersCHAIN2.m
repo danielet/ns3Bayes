@@ -40,8 +40,8 @@ while trg < ACK_received_by_node_5(length(ACK_received_by_node_5),1)
         end
        
     end
-    thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8); %???? non serve dividere per sample
-%     thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8)/sample; %???? non serve dividere per sample
+%    thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8); %???? non serve dividere per sample
+     thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8)/sample; %???? non serve dividere per sample
     counter = counter + 1;
     trg = trg + sample;
     trg = round(trg*(10^num_dig))/(10^num_dig);
