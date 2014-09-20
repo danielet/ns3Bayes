@@ -11,11 +11,11 @@ open (SEEDS, "<$seeds_file_name") or die "cannot open seeds file $seeds_file_nam
 @seed_lines = <SEEDS>;
 close(SEEDS);
 
-$tot_seeds = 10;
+$tot_seeds = 1;
 $line_seed = 1;
 
 $BAYES 	= 	0;
-$MOVE 	=	1;
+$MOVE 	=	0;
 $NODES	=	4;
 
 #@nakagami =  (5, 10, 20, 50, 100);

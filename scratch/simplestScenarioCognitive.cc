@@ -185,7 +185,7 @@ main (int argc, char *argv[])
 	
 
 	int ii ;
-	int SimuTime = 800;
+	int SimuTime = 500;
 	uint16_t port = 20; // FTP port number
 	uint32_t maxBytes =1000000000;  // xx MB
 	//PARAMETRO CHE PASSO DA RIGA DI COMMANDO 
@@ -334,7 +334,7 @@ else
 		Ptr<ConstantVelocityMobilityModel> model2 = nodes.Get(2)->GetObject<ConstantVelocityMobilityModel> ();             
 		
 		
-	    for (int t = 0; t < 4; t++)
+	    for (int t = 0; t < 6; t++)
 		{	
 			switch (t){
 				case 0:// CHANGE POSITION (1,2)
@@ -444,14 +444,14 @@ if(atoi(argv[5]) == 1){
 	sourceFTP.SetAttribute ("MaxBytes", UintegerValue (maxBytes));
 	ApplicationContainer sourceAppsFTP = sourceFTP.Install (nodes.Get (0));       
 	sourceAppsFTP.Start (Seconds (20.0));
-	sourceAppsFTP.Stop (Seconds (1000.0));
+	sourceAppsFTP.Stop (Seconds (800.0));
 
 	// CREATE a TCP receiver:
 	Address sinkLocalAddress(InetSocketAddress (Ipv4Address::GetAny (), port));
 	PacketSinkHelper sink ("ns3::TcpSocketFactory", sinkLocalAddress);
-	ApplicationContainer sinkAppsTraffic = sink.Install (nodes.Get (4));
+	ApplicationContainer sinkAppsTraffic = sink.Install (nodes.Get (3));
 	sinkAppsTraffic.Start (Seconds (20.0));
-	sinkAppsTraffic.Stop (Seconds (1000.0));
+	sinkAppsTraffic.Stop (Seconds (800.0));
 
 
 
