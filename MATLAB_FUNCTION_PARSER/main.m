@@ -1,7 +1,3 @@
-% clearvars -except folders, sub_folders, gi, gj, ii
-% close all
-
-
 function main(varDir ,nameEXP , ctrlOther)
 
     simuTime=600; 

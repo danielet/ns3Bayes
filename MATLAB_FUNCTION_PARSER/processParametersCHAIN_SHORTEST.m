@@ -2,7 +2,7 @@
 % THROUGHPUT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , ctrOTHER )
+function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,nameEXP , ctrOTHER )
 
     datetime=datestr(now);
     datetime=strrep(datetime,':','_'); %Replace colon with underscore
@@ -15,10 +15,7 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
 
     ACK_received_by_node_0 = [ACK_received_by_node_0([2:length(ACK_received_by_node_0)],1),ACK_received_by_node_0([2:length(ACK_received_by_node_0)],2)];
 
-%     for i = 1:length(ACK_received_by_node_0)
-%         tmp = num2str(ACK_received_by_node_0(i,1),'%.1f');
-%         ACK_received_by_node_0(i,1) = str2num(tmp);
-%     end
+
 
 
     ACK_received_by_node_0(:,1) = round(ACK_received_by_node_0(:,1)*10)/10;
@@ -69,8 +66,7 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
         load routing_tables_1.txt
         load routing_tables_2.txt
         load routing_tables_3.txt
-        load routing_tables_4.txt
-        load routing_tables_5.txt
+        load routing_tables_4.txt       
         
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -119,35 +115,13 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
         load 'MAC_Queue_0.txt'
         load 'MAC_Queue_1.txt'
         load 'MAC_Queue_2.txt'
-        load 'MAC_Queue_3.txt'
-        load 'MAC_Queue_4.txt'
-        % load 'MAC_Queue_5.txt'
-        % load 'MAC_Queue_6.txt'
+        load 'MAC_Queue_3.txt'       
         MAC_Queue_0(:,1) = round(MAC_Queue_0(:,1)*10)/10;
-%         for i = 1:length(MAC_Queue_0)
-%             num2str(MAC_Queue_0(i,1),'%.1f');
-%             MAC_Queue_0(i,1) = str2num(ans);
-%         end
         MAC_Queue_1(:,1) = round(MAC_Queue_1(:,1)*10)/10;
-%         for i = 1:length(MAC_Queue_1)
-%             num2str(MAC_Queue_1(i,1),'%.1f');
-%             MAC_Queue_1(i,1) = str2num(ans);
-    %     end
         MAC_Queue_2(:,1) = round(MAC_Queue_2(:,1)*10)/10;
-%         for i = 1:length(MAC_Queue_2)
-%             num2str(MAC_Queue_2(i,1),'%.1f');
-%             MAC_Queue_2(i,1) = str2num(ans);
-%         end
         MAC_Queue_3(:,1) = round(MAC_Queue_3(:,1)*10)/10;
-%         for i = 1:length(MAC_Queue_3)
-%             num2str(MAC_Queue_3(i,1),'%.1f');
-%             MAC_Queue_3(i,1) = str2num(ans);
-%         end
-        MAC_Queue_4(:,1) = round(MAC_Queue_4(:,1)*10)/10;
-%         for i = 1:length(MAC_Queue_4)
-%             num2str(MAC_Queue_4(i,1),'%.1f');
-%             MAC_Queue_4(i,1) = str2num(ans);
-%         end
+
+
 
         
 
@@ -244,23 +218,7 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
         counter = 1;
         num_dig = 1;
 
-        %%%% 4 %%%%
-        while trg < MAC_Queue_4(length(MAC_Queue_4),1) 
-            q4(counter, 1) = trg;
-            index =find(MAC_Queue_4(:,1) == trg);
-            if ~isempty(index)
-               q4(counter, 2) = MAC_Queue_4(index(1),2);
-            else
-               if(counter ==1)
-                    q4(counter, 2) = MAC_Queue_4(1,2);
-                else
-                   q4(counter, 2) = q4(counter-1, 2);
-                end
-            end
-            counter = counter + 1;
-            trg = trg + sample;
-            trg = round(trg*(10^num_dig))/(10^num_dig);
-        end
+
 
         
 
@@ -272,34 +230,13 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
         load 'ContentionWindow_node_0.txt'
         load 'ContentionWindow_node_1.txt'
         load 'ContentionWindow_node_2.txt'
-        load 'ContentionWindow_node_3.txt'
-        load 'ContentionWindow_node_4.txt'
-        % load 'ContentionWindow_node_5.txt'
+        load 'ContentionWindow_node_3.txt'       
+        
         ContentionWindow_node_0(:,1) = round(ContentionWindow_node_0(:,1)*10)/10;
-%         for i = 1:length(ContentionWindow_node_0)
-%             num2str(ContentionWindow_node_0(i,1),'%.1f');
-%             ContentionWindow_node_0(i,1) = str2num(ans);
-%         end
         ContentionWindow_node_1(:,1) = round(ContentionWindow_node_1(:,1)*10)/10;
-%         for i = 1:length(ContentionWindow_node_1)
-%             num2str(ContentionWindow_node_1(i,1),'%.1f');
-%             ContentionWindow_node_1(i,1) = str2num(ans);
-%         end
         ContentionWindow_node_2(:,1) = round(ContentionWindow_node_2(:,1)*10)/10;
-%         for i = 1:length(ContentionWindow_node_2)
-%             num2str(ContentionWindow_node_2(i,1),'%.1f');
-%             ContentionWindow_node_2(i,1) = str2num(ans);
-%         end
         ContentionWindow_node_3(:,1) = round(ContentionWindow_node_3(:,1)*10)/10;
-%         for i = 1:length(ContentionWindow_node_3)
-%             num2str(ContentionWindow_node_3(i,1),'%.1f');
-%             ContentionWindow_node_3(i,1) = str2num(ans);
-%         end
-        ContentionWindow_node_4(:,1) = round(ContentionWindow_node_4(:,1)*10)/10;
-%         for i = 1:length(ContentionWindow_node_4)
-%             num2str(ContentionWindow_node_4(i,1),'%.1f');
-%             ContentionWindow_node_4(i,1) = str2num(ans);
-%         end
+
 
 
 
@@ -441,41 +378,7 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
-        trg = startTime;
-        counter = 1;
-        num_dig = 1;
-
-        %%%% 5 %%%%
-        while trg < ContentionWindow_node_4(length(ContentionWindow_node_4),1) 
-            cont_win5(counter, 1) = trg;
-            index =find(ContentionWindow_node_4(:,1) == trg);
-            if ~isempty(index)
-               cont_win5(counter, 2) = ContentionWindow_node_4(index(1),2);
-               cont_win5_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win5_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win5_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-               cont_win5_s(counter , 2) = std(ContentionWindow_node_0(index,2));
-            else
-                if(counter==1)
-                    cont_win5(counter, 2) = ContentionWindow_node_4(1,2);
-                    cont_win5_p(counter , 2) = 15;
-                    cont_win5_e(counter , 2) = 15;
-                    cont_win5_m(counter , 2) = 15;
-                    cont_win5_s(counter , 2) = 15;
-                else
-                    cont_win5(counter, 2) = cont_win5(counter-1, 2);
-                    cont_win5_p(counter , 2) = 15;
-                    cont_win5_e(counter , 2) = 15;
-                    cont_win5_m(counter , 2) = 15;
-                    cont_win5_s(counter , 2) = 15;
-                end
-            end
-            counter = counter + 1;
-            trg = trg + sample;
-            trg = round(trg*(10^num_dig))/(10^num_dig);
-        end
-
-
+       
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % MAC TX
@@ -484,35 +387,12 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
         load 'Node_0_MAC_TX.txt'
         load 'Node_1_MAC_TX.txt'
         load 'Node_2_MAC_TX.txt'
-        load 'Node_3_MAC_TX.txt'
-        load 'Node_4_MAC_TX.txt'
-        % load 'Node_5_MAC_TX.txt'
+        load 'Node_3_MAC_TX.txt'       
+       
         Node_0_MAC_TX(:,1) = round(Node_0_MAC_TX(:,1)*10)/10;
-%         for i = 1:length(Node_0_MAC_TX)
-%             num2str(Node_0_MAC_TX(i,1),'%.1f');
-%             Node_0_MAC_TX(i,1) = str2num(ans);
-%         end
         Node_1_MAC_TX(:,1) = round(Node_1_MAC_TX(:,1)*10)/10;
-%         for i = 1:length(Node_1_MAC_TX)
-%             num2str(Node_1_MAC_TX(i,1),'%.1f');
-%             Node_1_MAC_TX(i,1) = str2num(ans);
-%         end
         Node_2_MAC_TX(:,1) = round(Node_2_MAC_TX(:,1)*10)/10;
-%         for i = 1:length(Node_2_MAC_TX)
-%             num2str(Node_2_MAC_TX(i,1),'%.1f');
-%             Node_2_MAC_TX(i,1) = str2num(ans);
-%         end
         Node_3_MAC_TX(:,1) = round(Node_3_MAC_TX(:,1)*10)/10;
-%         for i = 1:length(Node_3_MAC_TX)
-%             num2str(Node_3_MAC_TX(i,1),'%.1f');
-%             Node_3_MAC_TX(i,1) = str2num(ans);
-%         end
-        Node_4_MAC_TX(:,1) = round(Node_4_MAC_TX(:,1)*10)/10;
-%         for i = 1:length(Node_4_MAC_TX)
-%             num2str(Node_4_MAC_TX(i,1),'%.1f');
-%             Node_4_MAC_TX(i,1) = str2num(ans);
-%         end
-
 
 
         compare = [startTime:sample:simuTime];
@@ -553,15 +433,6 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             end
         end
 
-        for i = 1:length(compare)
-            MAC_TX5(i,1) = compare(i);
-            if ~isempty(find(Node_4_MAC_TX(:,1) == compare(i)))
-                MAC_TX5(i,2) = length(find(Node_4_MAC_TX(:,1) == compare(i)));
-            else
-                MAC_TX5(i,2) = 0;
-            end
-        end
-
 
 
 
@@ -573,33 +444,13 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
         load 'Node_1_MAC_RETX.txt'
         load 'Node_2_MAC_RETX.txt'
         load 'Node_3_MAC_RETX.txt'
-        load 'Node_4_MAC_RETX.txt'
-        % load 'Node_5_MAC_RETX.txt'
+        
         Node_0_MAC_RETX(:,1) = round(Node_0_MAC_RETX(:,1)*10)/10;
-%         for i = 1:length(Node_0_MAC_RETX)
-%             num2str(Node_0_MAC_RETX(i,1),'%.1f');
-%             Node_0_MAC_RETX(i,1) = str2num(ans);
-%         end
         Node_1_MAC_RETX(:,1) = round(Node_1_MAC_RETX(:,1)*10)/10;
-%         for i = 1:length(Node_1_MAC_RETX)
-%             num2str(Node_1_MAC_RETX(i,1),'%.1f');
-%             Node_1_MAC_RETX(i,1) = str2num(ans);
-%         end
         Node_2_MAC_RETX(:,1) = round(Node_2_MAC_RETX(:,1)*10)/10;
-%         for i = 1:length(Node_2_MAC_RETX)
-%             num2str(Node_2_MAC_RETX(i,1),'%.1f');
-%             Node_2_MAC_RETX(i,1) = str2num(ans);
-%         end
         Node_3_MAC_RETX(:,1) = round(Node_3_MAC_RETX(:,1)*10)/10;
-%         for i = 1:length(Node_3_MAC_RETX)
-%             num2str(Node_3_MAC_RETX(i,1),'%.1f');
-%             Node_3_MAC_RETX(i,1) = str2num(ans);
-%         end
-        Node_4_MAC_RETX(:,1) = round(Node_4_MAC_RETX(:,1)*10)/10;
-%         for i = 1:length(Node_4_MAC_RETX)
-%             num2str(Node_4_MAC_RETX(i,1),'%.1f');
-%             Node_4_MAC_RETX(i,1) = str2num(ans);
-%         end
+
+
 
 
 
@@ -638,16 +489,6 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
                 MAC_RETX4(i,2) = 0;
             end
         end
-
-        for i = 1:length(compare)
-            MAC_RETX5(i,1) = compare(i);
-            if ~isempty(find(Node_4_MAC_RETX(:,1) == compare(i)))
-                MAC_RETX5(i,2) = length(find(Node_4_MAC_RETX == compare(i)));
-            else
-                MAC_RETX5(i,2) = 0;
-            end
-        end
-
 
 
     %Build a name for the matfile

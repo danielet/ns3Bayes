@@ -49,9 +49,8 @@ for gi=1:size(folders,1)
             if strcmp(sub_folders(gj,1).name(1),'s') % enter the seeds folder
                 cd(sub_folders(gj,1).name)                
                 disp(['Working on ' folders(gi,1).name '/'  sub_folders(gj,1).name]);
-                unix('cp ../../main.m .');   
-                unix('cp ../../processParametersCHAIN1 .');   
-                unix('cp ../../processParametersCHAIN2 .');   
+                unix('cp ../../main_SHORTESR.m .');   
+                unix('cp ../../processParametersCHAIN_SHORTEST .');                   
                 nameEXP=sprintf('EXP_%d', ii);
                 varDir = fullfile(varDir);
                 mkdir(varDir, nameEXP);
