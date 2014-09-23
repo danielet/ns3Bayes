@@ -281,15 +281,21 @@ if(ctrlOther == 1)
 
     %%%% 1 %%%%
     while trg < ContentionWindow_node_5(length(ContentionWindow_node_5),1) 
-        cont_win5(counter, 1) = trg;
+        cont_win6(counter, 1) = trg;
         index = find(ContentionWindow_node_5(:,1) == trg);
         if ~isempty(index)
-           cont_win5(counter, 2) = ContentionWindow_node_5(index(1),2);
+           cont_win6(counter, 2) = ContentionWindow_node_5(index(1),2);
+           cont_win6_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+           cont_win6_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
         else
-           if(counter==1)
-                 cont_win5(counter, 2) = ContentionWindow_node_5(1,2);
+            if(counter==1)
+                cont_win6(counter, 2) = ContentionWindow_node_5(1,2);
+                cont_win6_p(counter , 2) = 15;
+                cont_win6_e(counter , 2) = 15;
             else
-                cont_win5(counter, 2) = cont_win5(counter-1, 2);
+                cont_win6(counter, 2) = cont_win6(counter-1, 2);
+                cont_win6_p(counter , 2) = 15;
+                cont_win6_e(counter , 2) = 15;
             end
         end
         counter = counter + 1;
@@ -303,15 +309,21 @@ if(ctrlOther == 1)
 
     %%%% 2 %%%%
     while trg < ContentionWindow_node_6(length(ContentionWindow_node_6),1) 
-        cont_win6(counter, 1) = trg;
+        cont_win7(counter, 1) = trg;
         index = find(ContentionWindow_node_6(:,1) == trg);
         if ~isempty(index)
-           cont_win6(counter, 2) = ContentionWindow_node_6(index(1),2);
+           cont_win7(counter, 2) = ContentionWindow_node_6(index(1),2);
+           cont_win7_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+           cont_win7_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
         else
-           if(counter==1)
-                 cont_win6(counter, 2) = ContentionWindow_node_6(1,2);
+            if(counter==1)
+                cont_win7(counter, 2) = ContentionWindow_node_6(1,2);
+                cont_win7_p(counter , 2) = 15;
+                cont_win7_e(counter , 2) = 15;
             else
-                cont_win6(counter, 2) = cont_win6(counter-1, 2);
+                cont_win7(counter, 2) = cont_win7(counter-1, 2);
+                cont_win7_p(counter , 2) = 15;
+                cont_win7_e(counter , 2) = 15;
             end
         end
         counter = counter + 1;
@@ -325,15 +337,21 @@ if(ctrlOther == 1)
 
     %%%% 3 %%%%
     while trg < ContentionWindow_node_7(length(ContentionWindow_node_7),1) 
-        cont_win7(counter, 1) = trg;
+        cont_win8(counter, 1) = trg;
         index = find(ContentionWindow_node_7(:,1) == trg);
         if ~isempty(index)            
-           cont_win7(counter, 2) = ContentionWindow_node_7(index(1),2);
+           cont_win8(counter, 2) = ContentionWindow_node_7(index(1),2);
+           cont_win8_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+           cont_win8_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
         else
             if(counter==1)
-                 cont_win7(counter, 2) = ContentionWindow_node_7(1,2);
+                cont_win8(counter, 2) = ContentionWindow_node_7(1,2);
+                cont_win8_p(counter , 2) = 15;
+                cont_win8_e(counter , 2) = 15;
             else
-                cont_win7(counter, 2) = cont_win7(counter-1, 2);
+                cont_win8(counter, 2) = cont_win8(counter-1, 2);
+                cont_win8_p(counter , 2) = 15;
+                cont_win8_e(counter , 2) = 15;
             end
         end
         counter = counter + 1;
@@ -347,15 +365,21 @@ if(ctrlOther == 1)
 
     %%%% 4 %%%%
     while trg < ContentionWindow_node_8(length(ContentionWindow_node_8),1) 
-        cont_win8(counter, 1) = trg;
+        cont_win9(counter, 1) = trg;
         index = find(ContentionWindow_node_8(:,1) == trg);
         if ~isempty(index)
-           cont_win8(counter, 2) = ContentionWindow_node_8(index(1),2);
+           cont_win9(counter, 2) = ContentionWindow_node_8(index(1),2);
+           cont_win9_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+           cont_win9_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
         else
-           if(counter==1)
-                 cont_win8(counter, 2) = ContentionWindow_node_8(1,2);
+            if(counter==1)               
+                cont_win9(counter, 2) = ContentionWindow_node_8(1,2);
+                cont_win9_p(counter , 2) = 15;
+                cont_win9_e(counter , 2) = 15;
             else
-                cont_win8(counter, 2) = cont_win8(counter-1, 2);
+                cont_win9(counter, 2) = cont_win9(counter-1, 2);
+                cont_win9_p(counter , 2) = 15;
+                cont_win9_e(counter , 2) = 15;
             end
 
         end

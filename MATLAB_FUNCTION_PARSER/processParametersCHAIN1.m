@@ -312,12 +312,19 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             cont_win1(counter, 1) = trg;
             index =find(ContentionWindow_node_0(:,1) == trg);
             if ~isempty(index)
-               cont_win1(counter, 2) = ContentionWindow_node_0(index(1),2);
+               cont_win1(counter, 2)    = ContentionWindow_node_0(index(1),2);
+               cont_win1_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+               cont_win1_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
             else
-               if(counter==1)
-                     cont_win1(counter, 2) = ContentionWindow_node_0(1,2);
+                if(counter==1)
+                    cont_win1(counter, 2) = ContentionWindow_node_0(1,2);
+                    cont_win1_p(counter , 2) = 15;
+                    cont_win1_e(counter , 2) = 15;
                 else
                     cont_win1(counter, 2) = cont_win1(counter-1, 2);
+                    cont_win1_p(counter , 2) = 15;
+                    cont_win1_e(counter , 2) = 15;
+                    
                 end
             end
             counter = counter + 1;
@@ -335,11 +342,17 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             index =find(ContentionWindow_node_1(:,1) == trg);
             if ~isempty(index)
                cont_win2(counter, 2) = ContentionWindow_node_1(index(1),2);
+               cont_win2_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+               cont_win2_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
             else
-               if(counter==1)
-                     cont_win2(counter, 2) = ContentionWindow_node_1(1,2);
+                if(counter==1)
+                    cont_win2(counter, 2) = ContentionWindow_node_1(1,2);
+                    cont_win2_p(counter , 2) = 15;
+                    cont_win2_e(counter , 2) = 15;
                 else
                     cont_win2(counter, 2) = cont_win2(counter-1, 2);
+                    cont_win2_p(counter , 2) = 15;
+                    cont_win2_e(counter , 2) = 15;
                 end
             end
             counter = counter + 1;
@@ -357,11 +370,17 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             index =find(ContentionWindow_node_2(:,1) == trg);
             if ~isempty(index)
                cont_win3(counter, 2) = ContentionWindow_node_2(index(1),2);
+               cont_win3_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+               cont_win3_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
             else
-               if(counter==1)
-                     cont_win3(counter, 2) = ContentionWindow_node_2(1,2);
+                if(counter==1)
+                    cont_win3(counter, 2) = ContentionWindow_node_2(1,2);
+                    cont_win3_p(counter , 2) = 15;
+                    cont_win3_e(counter , 2) = 15;
                 else
                     cont_win3(counter, 2) = cont_win3(counter-1, 2);
+                    cont_win3_p(counter , 2) = 15;
+                    cont_win3_e(counter , 2) = 15;
                 end
             end
             counter = counter + 1;
@@ -379,11 +398,17 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             index =find(ContentionWindow_node_3(:,1) == trg);
             if ~isempty(index)
                cont_win4(counter, 2) = ContentionWindow_node_3(index(1),2);
+               cont_win4_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+               cont_win4_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
             else
                if(counter==1)
-                     cont_win4(counter, 2) = ContentionWindow_node_3(1,2);
+                    cont_win4(counter, 2) = ContentionWindow_node_3(1,2);
+                    cont_win4_p(counter , 2) = 15;
+                    cont_win4_e(counter , 2) = 15;
                 else
                     cont_win4(counter, 2) = cont_win4(counter-1, 2);
+                    cont_win4_p(counter , 2) = 15;
+                    cont_win4_e(counter , 2) = 15;
                 end
             end
             counter = counter + 1;
@@ -401,19 +426,23 @@ function processParametersCHAIN1(startTime , simuTime, sample,varDir ,nameEXP , 
             index =find(ContentionWindow_node_4(:,1) == trg);
             if ~isempty(index)
                cont_win5(counter, 2) = ContentionWindow_node_4(index(1),2);
+               cont_win5_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+               cont_win5_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
             else
-               if(counter==1)
-                     cont_win5(counter, 2) = ContentionWindow_node_4(1,2);
+                if(counter==1)
+                    cont_win5(counter, 2) = ContentionWindow_node_4(1,2);
+                    cont_win5_p(counter , 2) = 15;
+                    cont_win5_e(counter , 2) = 15;
                 else
                     cont_win5(counter, 2) = cont_win5(counter-1, 2);
+                    cont_win5_p(counter , 2) = 15;
+                    cont_win5_e(counter , 2) = 15;
                 end
             end
             counter = counter + 1;
             trg = trg + sample;
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
-
-
 
 
 
