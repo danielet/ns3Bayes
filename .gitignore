@@ -4,7 +4,6 @@ build/*
 *.job.*
 *.txt
 .lock-waf_linux2_build
-MATLAB_FUNCTION_PARSER/M*
 MATLAB_FUNCTION_PARSER/NEWRUN_nakagamiM*
 MATLAB_FUNCTION_PARSER/*.log
 launch_sim.pl
