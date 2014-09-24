@@ -5,6 +5,6 @@
 #$ -cwd
 
 #$ -m ea
-perl launch_sim.pl
+perl launch_sim_simple.pl
 
 

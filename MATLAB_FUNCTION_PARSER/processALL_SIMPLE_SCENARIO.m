@@ -49,13 +49,14 @@ for gi=1:size(folders,1)
             if strcmp(sub_folders(gj,1).name(1),'s') % enter the seeds folder
                 cd(sub_folders(gj,1).name)                
                 disp(['Working on ' folders(gi,1).name '/'  sub_folders(gj,1).name]);
-                unix('cp ../../main_SHORTESR.m .');   
-                unix('cp ../../processParametersCHAIN_SHORTEST .');                   
-                nameEXP=sprintf('EXP_%d', ii);
+                unix('cp ../../main_SHORTEST.m .');   
+                unix('cp ../../processParametersCHAIN_SHORTEST.m .');                   
+                unix('cp ../../checkAllFile.m .');                   
+		nameEXP=sprintf('EXP_%d', ii);
                 varDir = fullfile(varDir);
                 mkdir(varDir, nameEXP);
                 tic
-                main( varDir ,nameEXP ,ctrOTHER); % execute the script for processing and testing 
+		main_SHORTEST( varDir ,nameEXP ,ctrOTHER); % execute the script for processing and testing 
                 toc
                 cd ..
                 ii=ii+1;

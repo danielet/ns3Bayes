@@ -11,15 +11,15 @@ open (SEEDS, "<$seeds_file_name") or die "cannot open seeds file $seeds_file_nam
 @seed_lines = <SEEDS>;
 close(SEEDS);
 
-$tot_seeds = 1;
+$tot_seeds = 5;
 $line_seed = 1;
 
 $BAYES 	= 	0;
-$MOVE 	=	0;
+$MOVE 	=	1;
 $NODES	=	4;
 
-#@nakagami =  (5, 10, 20, 50, 100);
-@nakagami =  (50);
+@nakagami =  (5, 10, 20, 50, 100);
+#@nakagami =  (50);
 @times = (30, 110, 190 , 270, 350, 430);
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);
