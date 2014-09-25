@@ -1,5 +1,5 @@
 function main_SHORTEST(varDir ,nameEXP , ctrlOther)
-    simuTime=600; 
+    simuTime=500; 
     sample=0.1;
     collect = 0; % set to 1 only when we found the correct starting point
     startTime = 200;
@@ -17,5 +17,6 @@ function main_SHORTEST(varDir ,nameEXP , ctrlOther)
         % startTime=20;
         startTime=startTime/10;
         fprintf('\nPHASE 1: processing parameters CHAIN... \n\n')
-        processParametersCHAIN_SHORTEST(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther ); 	end
+        processParametersCHAIN_SHORTEST(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther ); 	
+    end
 end

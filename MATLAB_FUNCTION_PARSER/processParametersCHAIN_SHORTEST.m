@@ -49,9 +49,9 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
     mobility_vectorH = zeros(length(thr(:,1)),2);
     mobility_vectorH(:,1) = thr(:,1);
     N=100;
-    for ii=0:(60-1)
-        if((ii>0 && ii < 6) || (ii>=17 && ii <= 22)|| (ii>=26 && ii <= 30) || (ii>=41 && ii <= 46) )
-            mobility_vectorH(1+(N*ii):(N*(ii+1))-1, 2) = ones(1,N-1);
+    for ii=0:(50-1)
+        if((ii >= 1 && ii <=5) || (ii >= 17 && ii <= 21)|| (ii >= 26 && ii <= 30) || (ii >= 41 && ii <= 45) )
+            mobility_vectorH(1+(N*ii):(N*(ii+1)), 2) = ones(1,N);
         end    
     end
 

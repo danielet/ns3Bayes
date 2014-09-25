@@ -185,7 +185,7 @@ main (int argc, char *argv[])
 	
 
 	int ii ;
-	int SimuTime = 500;
+	int SimuTime = 600;
 	uint16_t port = 20; // FTP port number
 	uint32_t maxBytes =1000000000;  // xx MB
 	//PARAMETRO CHE PASSO DA RIGA DI COMMANDO 

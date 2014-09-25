@@ -57,8 +57,8 @@ mobility_vectorV(:,1) = thr(:,1);
 
 
 N=100;
-for ii=0:(60-1)
-    if((ii>=9 && ii <= 13) || (ii>=33 && ii <= 37))        
+for ii=0:(80-1)
+    if((ii>=9 && ii <= 13) || (ii>=25 && ii <= 29) || (ii>=33 && ii <= 37) ||  (ii>=49 && ii <=53))         
         mobility_vectorV(1+(N*ii):(N*(ii+1)),2) = ones(1,N);
     end    
 end

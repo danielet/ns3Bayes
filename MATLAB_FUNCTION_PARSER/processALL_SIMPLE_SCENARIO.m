@@ -52,11 +52,11 @@ for gi=1:size(folders,1)
                 unix('cp ../../main_SHORTEST.m .');   
                 unix('cp ../../processParametersCHAIN_SHORTEST.m .');                   
                 unix('cp ../../checkAllFile.m .');                   
-		nameEXP=sprintf('EXP_%d', ii);
+                nameEXP=sprintf('EXP_%d', ii);
                 varDir = fullfile(varDir);
                 mkdir(varDir, nameEXP);
                 tic
-		main_SHORTEST( varDir ,nameEXP ,ctrOTHER); % execute the script for processing and testing 
+                main_SHORTEST( varDir ,nameEXP ,ctrOTHER); % execute the script for processing and testing 
                 toc
                 cd ..
                 ii=ii+1;

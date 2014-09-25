@@ -1,6 +1,6 @@
-function main(varDir ,nameEXP , ctrlOther)
+function mainMirror(varDir ,nameEXP , ctrlOther)
 
-    simuTime=600; 
+    simuTime=800; 
     sample=0.1;
     collect = 0; % set to 1 only when we found the correct starting point
     startTime = 200;
@@ -18,7 +18,7 @@ function main(varDir ,nameEXP , ctrlOther)
        
         startTime=startTime/10;
         fprintf('\nPHASE 1: processing parameters H CHAIN... \n\n')
-        processParametersCHAIN1(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther ); 
+        processParametersCHAIN1_MIRROR(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther ); 
 
         startTime = 200;       
         load 'CongestionWindow_node_5.txt'
@@ -34,6 +34,6 @@ function main(varDir ,nameEXP , ctrlOther)
         startTime=startTime/10;
         % startTime=20;
         fprintf('\nPHASE 1: processing parameters V CHAIN... \n\n')
-        processParametersCHAIN2(startTime , simuTime, sample,varDir ,nameEXP , ctrlOther ); 
+        processParametersCHAIN2_MIRROR(startTime , simuTime, sample,varDir ,nameEXP , ctrlOther ); 
     end
 end
