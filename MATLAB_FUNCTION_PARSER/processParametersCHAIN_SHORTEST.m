@@ -40,7 +40,7 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
                 thr(counter, 2) = thr(counter-1, 2);
             end
         end
-        thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8)/sample; %%???? non serve dividere per sample
+        thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8)/sample; 
         counter = counter + 1;
         trg = trg + sample;
         trg = round(trg*(10^num_dig))/(10^num_dig);
@@ -50,7 +50,7 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
     mobility_vectorH(:,1) = thr(:,1);
     N=100;
     for ii=0:(50-1)
-        if((ii >= 1 && ii <=5) || (ii >= 17 && ii <= 21)|| (ii >= 26 && ii <= 30) || (ii >= 41 && ii <= 45) )
+        if((ii >= 1 && ii <=5) || (ii >= 9 && ii <= 13) ||(ii >= 17 && ii <= 21)|| (ii >= 25 && ii <= 29) || (ii >= 33 && ii <= 37) || (ii >= 41 && ii <= 45) )
             mobility_vectorH(1+(N*ii):(N*(ii+1)), 2) = ones(1,N);
         end    
     end
@@ -251,7 +251,7 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
             if ~isempty(index)
                cont_win1(counter, 2)    = ContentionWindow_node_0(index(1),2);
                cont_win1_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win1_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
+               cont_win1_e(counter , 2) = sum(ContentionWindow_node_0(index,2));
                cont_win1_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
                cont_win1_s(counter , 2) = std(ContentionWindow_node_0(index,2));
                
@@ -287,7 +287,7 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
             if ~isempty(index)
                cont_win2(counter, 2) = ContentionWindow_node_1(index(1),2);
                cont_win2_p(counter , 2) = sum(ContentionWindow_node_1(index,2))/length(index);
-               cont_win2_e(counter , 2) = sum(ContentionWindow_node_1(index,2))/length(index);
+               cont_win2_e(counter , 2) = sum(ContentionWindow_node_1(index,2));
                cont_win2_m(counter , 2) = mean(ContentionWindow_node_1(index,2));
                cont_win2_s(counter , 2) = std(ContentionWindow_node_1(index,2));
             else
@@ -321,7 +321,7 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
             if ~isempty(index)
                cont_win3(counter, 2) = ContentionWindow_node_2(index(1),2);
                cont_win3_p(counter , 2) = sum(ContentionWindow_node_2(index,2))/length(index);
-               cont_win3_e(counter , 2) = sum(ContentionWindow_node_2(index,2))/length(index);
+               cont_win3_e(counter , 2) = sum(ContentionWindow_node_2(index,2));
                cont_win3_m(counter , 2) = mean(ContentionWindow_node_2(index,2));
                cont_win3_s(counter , 2) = std(ContentionWindow_node_2(index,2));
             else
@@ -355,7 +355,7 @@ function processParametersCHAIN_SHORTEST(startTime , simuTime, sample,varDir ,na
             if ~isempty(index)
                cont_win4(counter, 2) = ContentionWindow_node_3(index(1),2);
                cont_win4_p(counter , 2) = sum(ContentionWindow_node_3(index,2))/length(index);
-               cont_win4_e(counter , 2) = sum(ContentionWindow_node_3(index,2))/length(index);
+               cont_win4_e(counter , 2) = sum(ContentionWindow_node_3(index,2));
                cont_win4_m(counter , 2) = mean(ContentionWindow_node_3(index,2));
                cont_win4_s(counter , 2) = std(ContentionWindow_node_3(index,2));
             else
