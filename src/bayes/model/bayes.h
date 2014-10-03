@@ -66,7 +66,7 @@ public:
 
 	
 private:
-        uint64_t m_M;
+    uint64_t m_M;
 	double m_sample;
 	double m_start;
 	double m_stop;
@@ -76,6 +76,11 @@ private:
 	std::vector<Ptr<olsr::RoutingProtocol> > m_olsr_vector;
 	std::vector<std::pair<int,int> > m_tx_retx;
 	std::vector<std::pair<int,int> > m_tx_retx_temp;
+
+	static double bayes::MATRIX_1[14];
+	static double bayes::MATRIX_2[10];
+	static double bayes::MATRIX_3[8];
+
 };
 
 } // namespace ns3
