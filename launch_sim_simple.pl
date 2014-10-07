@@ -18,11 +18,11 @@ $BAYES 	= 	1;
 $MOVE 	=	1;
 $NODES	=	4;
 
-$percantageMove =85;
+$percantageMove =80;
 
-@nakagami =  (5, 10, 20, 50, 100);
-# @nakagami =  (50);
-@times = (30, 140, 220 , 300, 380, 460);
+# @nakagami =  (5, 10, 20, 50, 100);
+@nakagami =  (5);
+@times = (30, 140, 250 , 360, 490, 600);
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);
 for ($i=0; $i<=$#nakagami; $i++) {

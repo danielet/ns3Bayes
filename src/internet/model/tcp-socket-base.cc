@@ -1930,15 +1930,15 @@ TcpSocketBase::SendDataPacket (SequenceNumber32 seq, uint32_t maxSize, bool with
     FILE_DIC_SDPacket[m_node->GetId ()] = log_file;
     if(fname)
       free(fname);
-    fprintf(log_file, "%f\t %i\t %i\t %f\n", Simulator::Now().GetSeconds(), seq.GetValue()-1+sz, lastAck_received, m_rto.Get().GetSeconds());
-    fflush(log_file);
-  }
-  else
-  {
-    FILE * log_file = FILE_DIC_SDPacket.at(m_node->GetId ());
-    fprintf(log_file, "%f\t %i\t %i\t %f\n", Simulator::Now().GetSeconds(), seq.GetValue()-1+sz, lastAck_received, m_rto.Get().GetSeconds());
-    fflush(log_file);
-  }
+      fprintf(log_file, "%f\t %i\t %i\t %f\n", Simulator::Now().GetSeconds(), seq.GetValue()-1+sz, lastAck_received, m_rto.Get().GetSeconds());
+      fflush(log_file);
+    }
+    else
+    {
+      FILE * log_file = FILE_DIC_SDPacket.at(m_node->GetId ());
+      fprintf(log_file, "%f\t %i\t %i\t %f\n", Simulator::Now().GetSeconds(), seq.GetValue()-1+sz, lastAck_received, m_rto.Get().GetSeconds());
+      fflush(log_file);
+    }
 
   // fname = 0;
   uint8_t flags = withAck ? TcpHeader::ACK : 0;

@@ -78,7 +78,7 @@ private:
 	std::vector<std::pair<int,int> > m_tx_retx_temp;
 	int percentageMove ;
 
-	
+	static std::map<int , FILE *> FILE_DIC_BayesCtrl;
 
 };
 

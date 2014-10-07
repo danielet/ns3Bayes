@@ -4,6 +4,7 @@ build/*
 *.job.*
 *.txt
 .lock-waf_linux2_build
+wifi-simple-adhoc-grid.routes
 MATLAB_FUNCTION_PARSER/NEWRUN_nakagamiM*
 MATLAB_FUNCTION_PARSER/PLOT_RESULTS/M*
 MATLAB_FUNCTION_PARSER/*.log
