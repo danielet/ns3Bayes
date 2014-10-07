@@ -447,7 +447,7 @@ for(ii=0; ii< n_nodes ; ii++){
 // //QUESTA E' LA PARTE DI BAYES
 
 if(atoi(argv[5]) == 1){
-	int percentageMove = atoi(argv[12]);
+	int percentageMove = atoi(argv[12]);	
 	std::vector<Ptr<YansWifiPhy> > tx_vector;
 	std::vector<Ptr<DcaTxop> > retx_vector;
     std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector;		
