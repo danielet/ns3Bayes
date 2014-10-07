@@ -8,7 +8,7 @@ TPUT=zeros(1,5);
 stdTPUT=zeros(1,5);
 offM=0;
 
-percetange =75;
+percetange =80;
 m5=sprintf('M5_%d' , percetange);
 m10=sprintf('M10_%d' , percetange);
 m20=sprintf('M20_%d' , percetange);
@@ -100,6 +100,9 @@ set(gca,'XTick', 1:1:5 ,'XTickLabel' ,{5,10,20,50,100 });
 
 nameFile = sprintf('chainMob_%d.eps' , percetange );
 print(gcf,'-depsc' ,nameFile );
+save('Mob_Bayes.mat' , 'TPUT_H', 'stdTPUT')
+
+
 % end
 % swap =TPUT(4);
 % TPUT(4)= TPUT(5)*1.2;

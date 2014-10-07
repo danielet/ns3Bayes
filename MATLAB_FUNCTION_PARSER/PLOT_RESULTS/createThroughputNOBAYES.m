@@ -121,4 +121,4 @@ print(gcf,'-depsc' , 'chainMobNoBayes.eps');
 % xlabel('NAKAGAMI coefficient (M)')
 % ylabel('Throughput (Mb/s)')
 % legend(  'Standard Approach')
-% % save('Mob_noBayes2.mat' , 'TPUT', 'stdTPUT')
+save('Mob_NoBayes.mat' , 'TPUT_H', 'stdTPUT')
