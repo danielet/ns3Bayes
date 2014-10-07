@@ -11,7 +11,7 @@ open (SEEDS, "<$seeds_file_name") or die "cannot open seeds file $seeds_file_nam
 @seed_lines = <SEEDS>;
 close(SEEDS);
 
-$tot_seeds = 2;
+$tot_seeds = 10;
 $line_seed = 1;
 
 $BAYES 	= 	1;
@@ -26,6 +26,7 @@ $percantageMove =85;
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);
 for ($i=0; $i<=$#nakagami; $i++) {
+	$line_seed =1;
 	for ($seed_counter=0; $seed_counter<$tot_seeds; $seed_counter++) {
 		
 		chop($seed_lines[$line_seed]);
