@@ -49,7 +49,7 @@ public:
 	Bayes ();
 	virtual ~Bayes();
 	// double * Bayes::ComputationPosteriori(double * x_values );
-	void Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector);
+	void Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector, int percentageMoveTmp);
 	void BayesIntervention (double start, double stop);        
 	
 	double GetStartTime(void);
@@ -76,6 +76,7 @@ private:
 	std::vector<Ptr<olsr::RoutingProtocol> > m_olsr_vector;
 	std::vector<std::pair<int,int> > m_tx_retx;
 	std::vector<std::pair<int,int> > m_tx_retx_temp;
+	int percentageMove ;
 
 	
 

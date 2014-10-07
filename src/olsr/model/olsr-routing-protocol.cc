@@ -302,6 +302,8 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
 //NS_LOG_DEBUG("At time " << Simulator::Now().GetSeconds() << " node " << node << ", hello interval " << m_helloInterval.GetSeconds() << " and TC interval = " << m_tcInterval.GetSeconds() << ", hold hello " << m_holdHello.GetSeconds() << " and hold TC = " << m_holdTc.GetSeconds());
 //MATTEO collection
 
+  // counter =  3 - counter ;
+
 
   if(FILE_DIC.find(node) == FILE_DIC.end())
   {
@@ -326,6 +328,71 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
 
 
 }
+
+
+
+
+
+
+// void
+// RoutingProtocol::PrintRoutingTableBayes (Ptr<OutputStreamWrapper> stream , int numHop) const
+// {
+//   std::ostream* os = stream->GetStream ();
+//   *os << "Destination\t\tNextHop\t\tInterface\tDistance\n";
+
+// //MATTEO
+//   uint8_t buf[4];
+//   m_mainAddress.Serialize (buf);
+//   int node = (int) buf[3];
+//   int counter = 0;
+
+//   for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
+//        iter != m_table.end (); iter++)
+//     {
+//       *os << iter->first << "\t\t";
+//       *os << iter->second.nextAddr << "\t\t";
+//       if (Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) != "")
+//         {
+//           *os << Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) << "\t\t";
+//         }
+//       else
+//         {
+//           *os << iter->second.interface << "\t\t";
+//         }
+//       *os << iter->second.distance << "\t";
+//       *os << "\n";
+//       counter++;
+//     }
+  
+
+  
+//   if(FILE_DIC.find(node) == FILE_DIC.end())
+//   {
+//     FILE* log_file;
+//     char* fname = (char*)malloc(sizeof(char) * 255);  
+//     memset(fname, 0, sizeof(char) * 255);
+//     sprintf(fname, "routing_tables_%d.txt", node);
+//     log_file = fopen(fname, "w+");
+//     FILE_DIC[node] = log_file;
+//     if(fname)
+//       free(fname);
+//     fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), NumHop - counter);
+//     fflush(log_file);
+//   }
+//   else
+//   {
+//     FILE * log_file = FILE_DIC.at(node);
+//     fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), NumHop - counter);
+//     fflush(log_file);
+//   }
+
+
+
+// }
+
+
+
+
 
 void RoutingProtocol::DoInitialize ()
 {

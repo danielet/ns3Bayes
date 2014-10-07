@@ -67,7 +67,8 @@ Bayes::Bayes ()
     m_nodes(0),
     m_tx_vector(0),
     m_retx_vector(0),
-	m_olsr_vector(0)
+	m_olsr_vector(0),
+	percentageMove(51)
 {
 }
 
@@ -81,7 +82,7 @@ Bayes::~Bayes()
 }
 
 void 
-Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector)
+Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp)
 {
 	//NAKAGAMI VALUE
     m_M = M;       
@@ -92,6 +93,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 	m_olsr_vector = olsr_vector;
 	m_corruptedIPtables = false;
 	m_discovery = false;
+	percentageMove = percentageMoveTmp;
 	for (uint64_t i = 0; i < n_nodes; i++)
 	{
 		m_tx_retx.push_back(std::pair<int,int>(0,0));
@@ -264,14 +266,16 @@ Bayes::Collect(void)
 		        counter++;
 			}
 			x_values[2]= counter;
-			//CHECK ROUTING TABLE VALUE
-			double * mobilityProbability = ComputationPosteriori(x_values);
+		
 			//FUNZIONE DI CALCOLO DELLE PROBABILITA'
+			double * mobilityProbability = ComputationPosteriori(x_values);
+		
 			if (Simulator::Now().GetSeconds()>m_start)
 			{
 			// check whether we need to increase the rate of topology discovery messages		        		        
-				        if (mobilityProbability[0] > 0.75)          
+				        if ((mobilityProbability[0] * 100) > percentageMove )          
 						{
+						
 					        if (!m_discovery)
 					        {
 						        Bayes::ForceTopologyDiscovery();   
@@ -281,42 +285,48 @@ Bayes::Collect(void)
 					        m_stability = false;
 					        m_corr 		= false;				
 			        	}
+			    //     	else
+			    //     	{
+							// NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " NO BAYES");			        		
+			    //     	}
 		        
 			}//if	
 		
-	//NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " m_discovery " << m_discovery << " m_stability " << m_stability << " m_corruptedIPtables " << m_corruptedIPtables << " m_corr " << m_corr); 	
-		if (!m_mob)
-		{
-			if (!m_corruptedIPtables)
-			{
-				if (!m_stability)
-				{
-					//NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " no mobility prediction, relax the OLSR messages"); 
-					for (uint64_t i = 0; i < m_nodes; i++)
-					{	
-						//m_olsr_vector.at(i)->SetAttribute("HoldHello", TimeValue(Seconds(40)));        			
-						m_olsr_vector.at(i)->SetAttribute("HoldTc", TimeValue(Seconds(100)));        			
-						m_olsr_vector.at(i)->SetAttribute("HelloInterval", TimeValue(Seconds(2))); 
-						m_olsr_vector.at(i)->SetAttribute("TcInterval", TimeValue(Seconds(5)));              
-						m_olsr_vector.at(i)->HelloTimerStop();                  
-						m_olsr_vector.at(i)->TcTimerStop();    
-					}
-					m_stability = true;
-					m_discovery = false;	
-					m_corr = false;
-				}
-			}
-			else if (m_corruptedIPtables)
-			{
-				if (!m_corr)
-				{
-					//NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " increase OLSR msg rate because there are corrupted IP tables"); 
-					Bayes::ForceTopologyDiscovery();  
-					m_corr = true;
-	                m_stability = false;
-				}
-			}	
-		}
+		//CHECKED IF THERE WAS MOBILITY IF YES STEP AWAY
+		//OTHERWIRSE CHECK IF THE TABLES ARE CORRUPTED	
+
+		// if (!m_mob)
+		// {
+		// 	if (!m_corruptedIPtables)
+		// 	{
+		// 		if (!m_stability)
+		// 		{
+		// 			//NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " no mobility prediction, relax the OLSR messages"); 
+		// 			for (uint64_t i = 0; i < m_nodes; i++)
+		// 			{	
+		// 				//m_olsr_vector.at(i)->SetAttribute("HoldHello", TimeValue(Seconds(40)));        			
+		// 				m_olsr_vector.at(i)->SetAttribute("HoldTc", TimeValue(Seconds(100)));        			
+		// 				m_olsr_vector.at(i)->SetAttribute("HelloInterval", TimeValue(Seconds(2))); 
+		// 				m_olsr_vector.at(i)->SetAttribute("TcInterval", TimeValue(Seconds(5)));              
+		// 				m_olsr_vector.at(i)->HelloTimerStop();                  
+		// 				m_olsr_vector.at(i)->TcTimerStop();    
+		// 			}
+		// 			m_stability = true;
+		// 			m_discovery = false;	
+		// 			m_corr = false;
+		// 		}
+		// 	}
+		// 	else if (m_corruptedIPtables)
+		// 	{
+		// 		if (!m_corr)
+		// 		{
+		// 			//NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " increase OLSR msg rate because there are corrupted IP tables"); 
+		// 			Bayes::ForceTopologyDiscovery();  
+		// 			m_corr = true;
+	 //                m_stability = false;
+		// 		}
+		// 	}	
+		// }
 	}
 }
 

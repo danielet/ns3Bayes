@@ -53,86 +53,89 @@ MOBILITY FUNCtiONS
 void 
 Start_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2 , int id1 , int id2 )
 {
+	NS_LOG_UNCOND("----------- START X -----------");
 	//MODEL 1
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	NS_LOG_UNCOND("NODE " << id1 << " POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (2.0, 0.0, 0.0));
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	NS_LOG_UNCOND("NODE " << id1 <<" POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	//MODEL 2
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	NS_LOG_UNCOND("NODE " << id2 << " POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	pos2->SetVelocity(Vector (-2.0, 0.0, 0.0));
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	NS_LOG_UNCOND("NODE " << id2 << " POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 }
 
 void 
 Back_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2 , int id1 , int id2 )
 {
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	NS_LOG_UNCOND("----------- BACK X -----------");
+	NS_LOG_UNCOND("NODE " << id1 << " POS1 Time: " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (-2.0, 0.0, 0.0));
 	fileMove  << id1 << " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	NS_LOG_UNCOND("NODE " << id1 << " POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
+	NS_LOG_UNCOND("NODE " << id2 << " POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
 	fileMove  << id2 << " "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	pos2->SetVelocity(Vector (2.0, 0.0, 0.0));
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	NS_LOG_UNCOND("NODE " << id2 << " POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 void 
 Stop(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	NS_LOG_UNCOND("----------- STOP -----------");
+	NS_LOG_UNCOND("NODE " << id1 << " POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, 0.0, 0.0));
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	NS_LOG_UNCOND("NODE " << id1 << " POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
+	NS_LOG_UNCOND("NODE " << id2 <<" POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, 0.0, 0.0));
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	NS_LOG_UNCOND("NODE " << id2 << " POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 
-void 
-Start_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
-{
-	//MODEL 1
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
-	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	pos1->SetVelocity(Vector (0.0, 2.0, 0.0));
-	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+// void 
+// Start_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
+// {
+// 	//MODEL 1
+// 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+// 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
+// 	pos1->SetVelocity(Vector (0.0, 2.0, 0.0));
+// 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
+// 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	//MODEL 2
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
-	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
-	pos2->SetVelocity(Vector (0.0, -2.0, 0.0));
-	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
-}
+// 	//MODEL 2
+// 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+// 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
+// 	pos2->SetVelocity(Vector (0.0, -2.0, 0.0));
+// 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
+// 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+// }
 
-void 
-Back_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
-{
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
-	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	pos1->SetVelocity(Vector (0.0, -2.0, 0.0));
-	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+// void 
+// Back_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
+// {
+// 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+// 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
+// 	pos1->SetVelocity(Vector (0.0, -2.0, 0.0));
+// 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
+// 	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
-	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
-	pos2->SetVelocity(Vector (0.0, 2.0, 0.0));
-	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
-}
+// 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+// 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
+// 	pos2->SetVelocity(Vector (0.0, 2.0, 0.0));
+// 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
+// 	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+// }
 
 
 
@@ -187,7 +190,8 @@ main (int argc, char *argv[])
 	int ii ;
 	int SimuTime = 600;
 	uint16_t port = 20; // FTP port number
-	uint32_t maxBytes =1000000000;  // xx MB
+	// uint32_t maxBytes =1000000000;  // xx MB
+	uint32_t maxBytes =1000000000*100;  // xx MB
 	//PARAMETRO CHE PASSO DA RIGA DI COMMANDO 
 	int n_nodes = atoi(argv[3]); // # nodes  
 
@@ -327,7 +331,7 @@ else
 //MOBILITY PART
 ***********************************************/
 
-//QUESTO E' IL MODELLO DI MOVIMENTO A CROCE    
+
 	if(atoi(argv[4]) == 1){
 		double times[6] = {atof(argv[6]), atof(argv[7]), atof(argv[8]), atof(argv[9]),atof(argv[10]),atof(argv[11])};
 		Ptr<ConstantVelocityMobilityModel> model1 = nodes.Get(1)->GetObject<ConstantVelocityMobilityModel> ();             			
@@ -338,8 +342,9 @@ else
 		{	
 			switch (t){
 				case 0:// CHANGE POSITION (1,2)
+
 					Simulator::Schedule(Seconds(times[t]),&Start_X,model1,model2 , 1, 2);   
-	            	Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2 , 1,  2);  
+	            	Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2 , 1, 2);  
 				break;
 			
 				case 1: //BACK CHANGE POSITION (2,1)
@@ -410,6 +415,8 @@ for(ii=0; ii< n_nodes ; ii++){
 
 if(atoi(argv[5]) == 1){
 
+	int percentageMove = atoi(argv[12]);
+	NS_LOG_UNCOND("SETUP BAYES");
 	std::vector<Ptr<YansWifiPhy> > tx_vector;
 	std::vector<Ptr<DcaTxop> > retx_vector;
     std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector;		
@@ -423,7 +430,7 @@ if(atoi(argv[5]) == 1){
 
     double sampleTime = 0.1;
 	Ptr<Bayes> bayes = CreateObject<Bayes> ();
-	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector);	
+	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector , percentageMove);	
 	bayes->BayesIntervention(20.1,SimuTime); 
     //Extract the TCP SOCKET BASE to append Bayesian object
     Ptr<TcpL4Protocol> tcpl4 = nodes.Get(0)->GetObject<TcpL4Protocol>();

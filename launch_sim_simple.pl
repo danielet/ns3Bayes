@@ -11,23 +11,32 @@ open (SEEDS, "<$seeds_file_name") or die "cannot open seeds file $seeds_file_nam
 @seed_lines = <SEEDS>;
 close(SEEDS);
 
-$tot_seeds = 1;
+$tot_seeds = 2;
 $line_seed = 1;
 
-$BAYES 	= 	0;
+$BAYES 	= 	1;
 $MOVE 	=	1;
 $NODES	=	4;
 
+$percantageMove =85;
+
 @nakagami =  (5, 10, 20, 50, 100);
-#@nakagami =  (50);
-@times = (30, 110, 190 , 270, 350, 430);
+# @nakagami =  (50);
+@times = (30, 140, 220 , 300, 380, 460);
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);
 for ($i=0; $i<=$#nakagami; $i++) {
 	for ($seed_counter=0; $seed_counter<$tot_seeds; $seed_counter++) {
 		
 		chop($seed_lines[$line_seed]);
-		$run_subdir = "./NEWRUN_nakagamiM".$nakagami[$i]."/seed".$seed_lines[$line_seed]."/";
+		if( $BAYES == 1)
+		{
+			$run_subdir = "./NEWBAYESRUN_nakagamiM".$nakagami[$i]."PERC".$percantageMove."/seed".$seed_lines[$line_seed]."/";
+		}
+		else
+		{
+			$run_subdir = "./NEWNOBAYESRUN_nakagamiM".$nakagami[$i]."/seed".$seed_lines[$line_seed]."/";	
+		}
 		system("mkdir -p $run_subdir");	
 
 		if ($MOVE == 1){
@@ -39,7 +48,7 @@ for ($i=0; $i<=$#nakagami; $i++) {
 			$sixth_param 	= $times[5];
 			
 
-			$command_line_args = "$seed_lines[$line_seed] $nakagami[$i] $NODES $MOVE $BAYES $first_param  $second_param $thirst_param $fourth_param $fiveth_param $sixth_param";
+			$command_line_args = "$seed_lines[$line_seed] $nakagami[$i] $NODES $MOVE $BAYES $first_param  $second_param $thirst_param $fourth_param $fiveth_param $sixth_param $percantageMove";
 			
 		}else{
 			$command_line_args = "$seed_lines[$line_seed] $nakagami[$i] $NODES $MOVE $BAYES";
