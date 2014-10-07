@@ -8,13 +8,14 @@ folders=dir;
 PATH = pwd;
 for gi=1:size(folders,1)
     ii=1;
-    if strcmp(folders(gi,1).name(1),'N') % enter the nakagami folder
-        
+%    if strcmp(folders(gi,1).name(1),'N') % enter the nakagami folder
+   	ctrlDir = 0;     
         if strcmp(folders(gi,1).name,'NEWNOBAYESRUN_nakagamiM5') % enter the nakagami folder
             pathDir=folders(gi,1).name;
             offM=1; % M=5 
             varDir='MNOBAYE5';
             varDir= strcat(PATH,'/', varDir) ;
+	ctrlDir=1;
             mkdir(varDir);
             elseif strcmp(folders(gi,1).name,'NEWNOBAYESRUN_nakagamiM10')
                 pathDir=folders(gi,1).name;
@@ -22,27 +23,33 @@ for gi=1:size(folders,1)
                 varDir='MNOBAYE10' ;
                 varDir= strcat(PATH,'/', varDir) ;
                 mkdir(varDir);
+		ctrlDir=1;
                 elseif strcmp(folders(gi,1).name,'NEWNOBAYESRUN_nakagamiM20')
                     pathDir=folders(gi,1).name;
                     offM=3; % M=20
                     varDir='MNOBAYE20' ;
                     varDir= strcat(PATH,'/', varDir) ;
                     mkdir(varDir);
+		ctrlDir=1;
                     elseif strcmp(folders(gi,1).name,'NEWNOBAYESRUN_nakagamiM50')
                         pathDir=folders(gi,1).name;
                         offM=4; % M=50                       
                         varDir='MNOBAYE50' ;
                         varDir= strcat(PATH,'/', varDir) ;
                         mkdir(varDir);
-                        elseif strcmp(folders(gi,1).name,'NEWNOBAYESRUN_nakagamiM100')
+                
+			ctrlDir=1;
+		        elseif strcmp(folders(gi,1).name,'NEWNOBAYESRUN_nakagamiM100')
                             pathDir=folders(gi,1).name;
                             offM=5; % M=100
                             varDir='MNOBAYE100' ;
                             varDir= strcat(PATH,'/', varDir) ;
                             mkdir(varDir);
-%     end
-        end
-        
+				ctrlDir=1;
+				
+     end
+%        end
+ if(ctrlDir == 1)       
         cd(folders(gi,1).name)
         sub_folders=dir;
         for gj=1:size(sub_folders,1)
@@ -64,4 +71,5 @@ for gi=1:size(folders,1)
         end
         cd ..        
     end
+end
 end
