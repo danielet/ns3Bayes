@@ -14,14 +14,14 @@ close(SEEDS);
 $tot_seeds = 10;
 $line_seed = 1;
 
-$BAYES 	= 	1;
+$BAYES 	= 	0;
 $MOVE 	=	1;
 $NODES	=	4;
 
 $percantageMove =80;
 
-# @nakagami =  (5, 10, 20, 50, 100);
-@nakagami =  (5);
+ @nakagami =  (5, 10, 20, 50, 100);
+#@nakagami =  (5);
 @times = (30, 140, 250 , 360, 490, 600);
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);

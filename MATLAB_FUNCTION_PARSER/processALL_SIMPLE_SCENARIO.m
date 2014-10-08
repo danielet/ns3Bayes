@@ -7,7 +7,7 @@ ctrOTHER = 1;
 folders=dir;
 PATH = pwd;
 
-percetange =75;
+percetange =80;
 
 m5=sprintf('NEWBAYESRUN_nakagamiM5PERC%d' , percetange);
 m10=sprintf('NEWBAYESRUN_nakagamiM10PERC%d' , percetange);

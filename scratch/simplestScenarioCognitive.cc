@@ -191,7 +191,7 @@ main (int argc, char *argv[])
 	int SimuTime = 700;
 	uint16_t port = 20; // FTP port number
 	// uint32_t maxBytes =1000000000;  // xx MB
-	uint32_t maxBytes =1000000000*100;  // xx MB
+	uint32_t maxBytes =1000000000;  // xx MB
 	//PARAMETRO CHE PASSO DA RIGA DI COMMANDO 
 	int n_nodes = atoi(argv[3]); // # nodes  
 

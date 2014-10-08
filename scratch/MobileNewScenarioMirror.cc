@@ -186,7 +186,7 @@ main (int argc, char *argv[])
 
 	int ii ;
 	
-	int SimuTime = 800;
+	int SimuTime = 900;
 
 	uint16_t port = 20; // FTP port number
 	uint32_t maxBytes =1000000000; // xx MB

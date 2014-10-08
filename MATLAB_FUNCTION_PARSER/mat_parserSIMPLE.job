@@ -7,6 +7,6 @@
 #$ -m ea
 
 #matlab processALL.m
-matlab < $(pwd)/processALL_SIMPLE_SCENARIO.m  > test.log
+matlab < $(pwd)/processALL_SIMPLE_SCENARIO_NOBAYES.m  > test.log
 
 #tar -cf crossNoMobNoBayes.tar crossNoMobNoBayes
