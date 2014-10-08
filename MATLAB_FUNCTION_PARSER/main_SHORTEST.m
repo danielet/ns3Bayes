@@ -3,7 +3,7 @@ function main_SHORTEST(varDir ,nameEXP , ctrlOther)
     sample=0.1;
     collect = 0; % set to 1 only when we found the correct starting point
     startTime = 200;
-    if(checkAllFile() == 1)
+    if(checkAllFileShort() == 1)
         load 'CongestionWindow_node_0.txt'
 
         CongestionWindow_node_0(:,1) = round(CongestionWindow_node_0(:,1)*10)/10;
