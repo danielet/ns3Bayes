@@ -285,10 +285,10 @@ if(ctrlOther == 1)
         index = find(ContentionWindow_node_5(:,1) == trg);
         if ~isempty(index)
            cont_win6(counter, 2) = ContentionWindow_node_5(index(1),2);
-           cont_win6_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win6_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win6_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-           cont_win6_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+           cont_win6_p(counter , 2) = sum(ContentionWindow_node_5(index,2))/length(index);
+           cont_win6_e(counter , 2) = sum(ContentionWindow_node_5(index,2))/length(index);
+           cont_win6_m(counter , 2) = mean(ContentionWindow_node_5(index,2));
+           cont_win6_s(counter , 2) = std(ContentionWindow_node_5(index,2));
         else
             if(counter==1)
                 cont_win6(counter, 2) = ContentionWindow_node_5(1,2);
@@ -319,10 +319,10 @@ if(ctrlOther == 1)
         index = find(ContentionWindow_node_6(:,1) == trg);
         if ~isempty(index)
            cont_win7(counter, 2) = ContentionWindow_node_6(index(1),2);
-           cont_win7_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win7_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win7_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-           cont_win7_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+           cont_win7_p(counter , 2) = sum(ContentionWindow_node_6(index,2))/length(index);
+           cont_win7_e(counter , 2) = sum(ContentionWindow_node_6(index,2))/length(index);
+           cont_win7_m(counter , 2) = mean(ContentionWindow_node_6(index,2));
+           cont_win7_s(counter , 2) = std(ContentionWindow_node_6(index,2));
         else
             if(counter==1)
                 cont_win7(counter, 2) = ContentionWindow_node_6(1,2);
@@ -353,10 +353,10 @@ if(ctrlOther == 1)
         index = find(ContentionWindow_node_7(:,1) == trg);
         if ~isempty(index)            
            cont_win8(counter, 2) = ContentionWindow_node_7(index(1),2);
-           cont_win8_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win8_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win8_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-           cont_win8_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+           cont_win8_p(counter , 2) = sum(ContentionWindow_node_7(index,2))/length(index);
+           cont_win8_e(counter , 2) = sum(ContentionWindow_node_7(index,2))/length(index);
+           cont_win8_m(counter , 2) = mean(ContentionWindow_node_7(index,2));
+           cont_win8_s(counter , 2) = std(ContentionWindow_node_7(index,2));
         else
             if(counter==1)
                 cont_win8(counter, 2) = ContentionWindow_node_7(1,2);
@@ -387,10 +387,10 @@ if(ctrlOther == 1)
         index = find(ContentionWindow_node_8(:,1) == trg);
         if ~isempty(index)
            cont_win9(counter, 2) = ContentionWindow_node_8(index(1),2);
-           cont_win9_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win9_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-           cont_win9_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-           cont_win9_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+           cont_win9_p(counter , 2) = sum(ContentionWindow_node_8(index,2))/length(index);
+           cont_win9_e(counter , 2) = sum(ContentionWindow_node_8(index,2))/length(index);
+           cont_win9_m(counter , 2) = mean(ContentionWindow_node_8(index,2));
+           cont_win9_s(counter , 2) = std(ContentionWindow_node_8(index,2));
         else
             if(counter==1)               
                 cont_win9(counter, 2) = ContentionWindow_node_8(1,2);

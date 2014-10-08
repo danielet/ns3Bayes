@@ -349,10 +349,10 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             index =find(ContentionWindow_node_1(:,1) == trg);
             if ~isempty(index)
                cont_win2(counter, 2) = ContentionWindow_node_1(index(1),2);
-               cont_win2_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win2_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win2_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-               cont_win2_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+               cont_win2_p(counter , 2) = sum(ContentionWindow_node_1(index,2))/length(index);
+               cont_win2_e(counter , 2) = sum(ContentionWindow_node_1(index,2))/length(index);
+               cont_win2_m(counter , 2) = mean(ContentionWindow_node_1(index,2));
+               cont_win2_s(counter , 2) = std(ContentionWindow_node_1(index,2));
             else
                 if(counter==1)
                     cont_win2(counter, 2) = ContentionWindow_node_1(1,2);
@@ -383,10 +383,10 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             index =find(ContentionWindow_node_2(:,1) == trg);
             if ~isempty(index)
                cont_win3(counter, 2) = ContentionWindow_node_2(index(1),2);
-               cont_win3_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win3_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win3_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-               cont_win3_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+               cont_win3_p(counter , 2) = sum(ContentionWindow_node_2(index,2))/length(index);
+               cont_win3_e(counter , 2) = sum(ContentionWindow_node_2(index,2))/length(index);
+               cont_win3_m(counter , 2) = mean(ContentionWindow_node_2(index,2));
+               cont_win3_s(counter , 2) = std(ContentionWindow_node_2(index,2));
             else
                 if(counter==1)
                     cont_win3(counter, 2) = ContentionWindow_node_2(1,2);
@@ -417,10 +417,10 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             index =find(ContentionWindow_node_3(:,1) == trg);
             if ~isempty(index)
                cont_win4(counter, 2) = ContentionWindow_node_3(index(1),2);
-               cont_win4_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win4_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win4_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-               cont_win4_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+               cont_win4_p(counter , 2) = sum(ContentionWindow_node_3(index,2))/length(index);
+               cont_win4_e(counter , 2) = sum(ContentionWindow_node_3(index,2))/length(index);
+               cont_win4_m(counter , 2) = mean(ContentionWindow_node_3(index,2));
+               cont_win4_s(counter , 2) = std(ContentionWindow_node_3(index,2));
             else
                if(counter==1)
                     cont_win4(counter, 2) = ContentionWindow_node_3(1,2);
@@ -451,10 +451,10 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             index =find(ContentionWindow_node_4(:,1) == trg);
             if ~isempty(index)
                cont_win5(counter, 2) = ContentionWindow_node_4(index(1),2);
-               cont_win5_p(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win5_e(counter , 2) = sum(ContentionWindow_node_0(index,2))/length(index);
-               cont_win5_m(counter , 2) = mean(ContentionWindow_node_0(index,2));
-               cont_win5_s(counter , 2) = std(ContentionWindow_node_0(index,2));
+               cont_win5_p(counter , 2) = sum(ContentionWindow_node_4(index,2))/length(index);
+               cont_win5_e(counter , 2) = sum(ContentionWindow_node_4(index,2))/length(index);
+               cont_win5_m(counter , 2) = mean(ContentionWindow_node_4(index,2));
+               cont_win5_s(counter , 2) = std(ContentionWindow_node_4(index,2));
             else
                 if(counter==1)
                     cont_win5(counter, 2) = ContentionWindow_node_4(1,2);
