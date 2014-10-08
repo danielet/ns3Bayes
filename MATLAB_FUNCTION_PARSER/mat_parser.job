@@ -7,6 +7,6 @@
 #$ -m ea
 
 #matlab processALL.m
-matlab < $(pwd)/processALL.m > test.log
+matlab < $(pwd)/processALLMirror.m > test.log
 
 #tar -cf crossNoMobNoBayes.tar crossNoMobNoBayes
