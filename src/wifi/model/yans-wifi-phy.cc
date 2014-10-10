@@ -185,7 +185,8 @@ YansWifiPhy::GetTypeId (void)
 YansWifiPhy::YansWifiPhy ()
   :  m_channelNumber (1),
     m_endRxEvent (),
-    m_channelStartingFrequency (0)
+    m_channelStartingFrequency (0),
+    m_sentPacketCounter(0)
 {
   NS_LOG_FUNCTION (this);
   m_random = CreateObject<UniformRandomVariable> ();
@@ -249,7 +250,7 @@ YansWifiPhy::ConfigureStandard (enum WifiPhyStandard standard)
 }
 
 
-double //MATTEO
+int //MATTEO
 YansWifiPhy::GetTxPackets (void) const
 {
   return m_sentPacketCounter;

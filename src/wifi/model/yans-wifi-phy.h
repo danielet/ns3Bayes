@@ -73,7 +73,7 @@ public:
 
 
 
-  double GetTxPackets (void) const; //MATTEO
+  int GetTxPackets (void) const; //MATTEO
   /**
    * Set the YansWifiChannel this YansWifiPhy is to be connected to.
    *
@@ -530,7 +530,7 @@ private:
   InterferenceHelper m_interference;    //!< Pointer to InterferenceHelper
   Time m_channelSwitchDelay;            //!< Time required to switch between channel
 
-  double m_sentPacketCounter; //MATTEO
+  int m_sentPacketCounter; //MATTEO
   static std::map<int , FILE *> FILE_DIC_YANS;
 
 };

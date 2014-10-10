@@ -1,6 +1,6 @@
 function mainMirror(varDir ,nameEXP , ctrlOther)
 
-    simuTime=800; 
+    simuTime=900; 
     sample=0.1;
     collect = 0; % set to 1 only when we found the correct starting point
     startTime = 200;

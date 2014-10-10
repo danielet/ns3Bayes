@@ -186,7 +186,7 @@ main (int argc, char *argv[])
 
 	int ii ;
 	
-	int SimuTime = 800;
+	int SimuTime = 900;
 
 	uint16_t port = 20; // FTP port number
 	uint32_t maxBytes =1000000000; // xx MB
@@ -447,7 +447,7 @@ for(ii=0; ii< n_nodes ; ii++){
 // //QUESTA E' LA PARTE DI BAYES
 
 if(atoi(argv[5]) == 1){
-
+	int percentageMove = atoi(argv[12]);	
 	std::vector<Ptr<YansWifiPhy> > tx_vector;
 	std::vector<Ptr<DcaTxop> > retx_vector;
     std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector;		
@@ -461,7 +461,7 @@ if(atoi(argv[5]) == 1){
 
     double sampleTime = 0.1;
 	Ptr<Bayes> bayes = CreateObject<Bayes> ();
-	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector);	
+	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector, percentageMove);	
 	bayes->BayesIntervention(20.1,SimuTime); 
     //Extract the TCP SOCKET BASE to append Bayesian object
     Ptr<TcpL4Protocol> tcpl4 = nodes.Get(0)->GetObject<TcpL4Protocol>();

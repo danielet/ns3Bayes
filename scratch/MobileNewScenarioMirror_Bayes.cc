@@ -185,8 +185,7 @@ main (int argc, char *argv[])
 	
 
 	int ii ;
-	
-	int SimuTime = 900;
+	int SimuTime = 1000;
 
 	uint16_t port = 20; // FTP port number
 	uint32_t maxBytes =1000000000; // xx MB
@@ -293,6 +292,7 @@ if(atoi(argv[4]) == 0)
 }
 else
 {
+	
 	MobilityHelper fix_node;
 	Ptr<ListPositionAllocator> positionAlloc_fix = CreateObject<ListPositionAllocator> ();
 
@@ -447,25 +447,33 @@ for(ii=0; ii< n_nodes ; ii++){
 // //QUESTA E' LA PARTE DI BAYES
 
 if(atoi(argv[5]) == 1){
-	int percentageMove = atoi(argv[12]);	
+	int percentageMove = atoi(argv[14]);	
+	printf("%d \n" , percentageMove);
 	std::vector<Ptr<YansWifiPhy> > tx_vector;
 	std::vector<Ptr<DcaTxop> > retx_vector;
     std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector;		
+    std::vector<Ptr<DcaTxop> > mac_queue;
 	for (ii = 0; ii < n_nodes; ii++)
 	{
 	   tx_vector.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetPhy()->GetObject<WifiPhy>()->GetObject<YansWifiPhy>());			
 	   retx_vector.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetMac()->GetObject<WifiMac>()->GetObject<RegularWifiMac>()->GetDcaTxop());	
+
+	   
+	   // mac_queue.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetMac()->GetObject<WifiMac>()->GetObject<RegularWifiMac>()->GetDcaTxop());	   
 	   Ptr<Ipv4RoutingProtocol> prot = nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol();
 	   olsr_vector.push_back(DynamicCast<olsr::RoutingProtocol>(prot));   
 	}
 
     double sampleTime = 0.1;
 	Ptr<Bayes> bayes = CreateObject<Bayes> ();
-	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector, percentageMove);	
-	bayes->BayesIntervention(20.1,SimuTime); 
-    //Extract the TCP SOCKET BASE to append Bayesian object
+	
+	// bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector, mac_queue ,percentageMove);	
+	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector,percentageMove);	
+	bayes->BayesIntervention(50.1,SimuTime); 
+
+ //    //Extract the TCP SOCKET BASE to append Bayesian object
     Ptr<TcpL4Protocol> tcpl4 = nodes.Get(0)->GetObject<TcpL4Protocol>();
-    Simulator::Schedule(Seconds(20.2),&GetBayes,tcpl4,bayes);
+    Simulator::Schedule(Seconds(50.2),&GetBayes,tcpl4,bayes);
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -481,14 +489,14 @@ if(atoi(argv[5]) == 1){
 	BulkSendHelper sourceFTP ("ns3::TcpSocketFactory",sinkLocalAddressReceiver1);
 	sourceFTP.SetAttribute ("MaxBytes", UintegerValue (maxBytes));
 	ApplicationContainer sourceAppsFTP = sourceFTP.Install (nodes.Get (0));       
-	sourceAppsFTP.Start (Seconds (20.0));
+	sourceAppsFTP.Start (Seconds (50.0));
 	sourceAppsFTP.Stop (Seconds (1000.0));
 
 	// CREATE a TCP receiver:
 	Address sinkLocalAddress(InetSocketAddress (Ipv4Address::GetAny (), port));
 	PacketSinkHelper sink ("ns3::TcpSocketFactory", sinkLocalAddress);
 	ApplicationContainer sinkAppsTraffic = sink.Install (nodes.Get (floor(n_nodes/2)));
-	sinkAppsTraffic.Start (Seconds (20.0));
+	sinkAppsTraffic.Start (Seconds (50.0));
 	sinkAppsTraffic.Stop (Seconds (1000.0));
 
 
@@ -497,13 +505,13 @@ if(atoi(argv[5]) == 1){
 	BulkSendHelper source2FTP ("ns3::TcpSocketFactory",sinkLocalAddressReceiver2);
 	source2FTP.SetAttribute ("MaxBytes", UintegerValue (maxBytes));
 	ApplicationContainer source2AppsFTP = source2FTP.Install (nodes.Get ((int)ceil((float)n_nodes/2)));       
-	source2AppsFTP.Start (Seconds (20.0));
+	source2AppsFTP.Start (Seconds (50.0));
 	source2AppsFTP.Stop (Seconds (1000.0));
 
 	Address sinkLocalAddress2(InetSocketAddress (Ipv4Address::GetAny (), port));
 	PacketSinkHelper sink2 ("ns3::TcpSocketFactory", sinkLocalAddress2);
 	ApplicationContainer sink2AppsTraffic = sink2.Install (nodes.Get (n_nodes-1));
-	sink2AppsTraffic.Start (Seconds (20.0));
+	sink2AppsTraffic.Start (Seconds (50.0));
 	sink2AppsTraffic.Stop (Seconds (1000.0));
 
 

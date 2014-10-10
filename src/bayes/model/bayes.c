@@ -45,7 +45,6 @@ NS_OBJECT_ENSURE_REGISTERED (Bayes);
 double * MATRIX_1;
 double * MATRIX_2;
 double * MATRIX_3;
-double * MATRIX_4;
 double * ComputationPosteriori(double * x_values );
 
 std::map<int , FILE *> Bayes::FILE_DIC_BayesCtrl;
@@ -73,6 +72,7 @@ Bayes::Bayes ()
     m_tx_vector(0),
     m_retx_vector(0),
 	m_olsr_vector(0),
+	mac_queue(0),
 	percentageMove(51)
 {
 }
@@ -84,14 +84,12 @@ Bayes::~Bayes()
 	m_olsr_vector.clear();	
 	m_tx_retx.clear();
 	m_tx_retx_temp.clear();
-	// mac_queue.cleat();
+	mac_queue.cleat();
 }
 
 void 
-Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, 
-				std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp)
+Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp)
 {
-// { std::vector<Ptr<DcaTxop> > mac_queueTmp , 
 	//NAKAGAMI VALUE
     m_M = M;       
 	m_sample = sampleTime;
@@ -101,9 +99,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 	m_olsr_vector = olsr_vector;
 	m_corruptedIPtables = false;
 	m_discovery = false;
-	// mac_queue = mac_queueTmp;
 	percentageMove = percentageMoveTmp;
-	NS_LOG_UNCOND("BAYES " << Simulator::Now().GetSeconds());			
 	for (uint64_t i = 0; i < n_nodes; i++)
 	{
 		m_tx_retx.push_back(std::pair<int,int>(0,0));
@@ -112,7 +108,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 	
 	switch (m_M){
 		case 5:{
-			double MATRIX_1_TMP[14]		=	{0.6902 ,   0.0365,    0.0472,    0.0944,    0.1197,    0.0119,   0.0002,     0.7742,    0.0376,    0.0294,    0.0691,    0.0829,    0.0067,    0.000031739};
+			double MATRIX_1_TMP[14]		=	{0.6902 ,   0.0365,    0.0472,    0.0944,    0.1197,    0.0119,   0.0002,    0.7742,    0.0376,    0.0294,    0.0691,    0.0829,    0.0067,    0.000031739};
 			double MATRIX_2_TMP[10] 	= 	{0.7386,    0.0683,    0.0915,    0.0959,    0.0057,    0.8186,    0.0420,    0.0566,    0.0763,    0.0064};
 			double MATRIX_3_TMP[8]		=	{0.9328,    0.0046,    0.0187,    0.0439,    0.9384,    0.0037,    0.0076,    0.0504};
 			double MATRIX_4_TMP[10]		=	{0.9108,    0.0401,    0.0360,    0.0127,    0.0004,    0.9396,    0.0288,    0.0241,    0.0072,    0.0003};
@@ -123,7 +119,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 			MATRIX_3 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_3, MATRIX_3_TMP, sizeof(double) * 8);
 
-			MATRIX_4 = (double *) malloc(sizeof(double) * 10);
+			MATRIX_4 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_4, MATRIX_4_TMP, sizeof(double) * 10);
 
 		break;
@@ -140,7 +136,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 			MATRIX_3 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_3, MATRIX_3_TMP, sizeof(double) * 8);
 
-			MATRIX_4 = (double *) malloc(sizeof(double) * 10);
+			MATRIX_4 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_4, MATRIX_4_TMP, sizeof(double) * 10);
 		break;
 		}
@@ -157,7 +153,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 			MATRIX_3 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_3, MATRIX_3_TMP, sizeof(double) * 8);
 
-			MATRIX_4 = (double *) malloc(sizeof(double) * 10);
+			MATRIX_4 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_4, MATRIX_4_TMP, sizeof(double) * 10);
 		break;
 		}
@@ -174,16 +170,16 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 			MATRIX_3 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_3, MATRIX_3_TMP, sizeof(double) * 8);
 
-			MATRIX_4 = (double *) malloc(sizeof(double) * 10);
+			MATRIX_4 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_4, MATRIX_4_TMP, sizeof(double) * 10);
 		break;
 		}
 		case 100:
 		{
-			double MATRIX_1_TMP[14]		=	{0.4479,    0.0172 ,   0.1388,    0.1874   , 0.1233,    0.0839,    0.0014,    0.6273,    0.0271,    0.0536,    0.1173,    0.1066,    0.0671,    0.0010};
-			double MATRIX_2_TMP[10] 	= 	{0.5118,    0.2929 ,   0.1701 ,   0.0252  ,  0.0000,    0.6725,    0.1697,    0.1160,    0.0365,    0.0053};
-			double MATRIX_3_TMP[8]		=	{0.9254,    0.0038 ,   0.0155  ,  0.0553 ,   0.9365,    0.0001,    0.0008,    0.0626};
-			double MATRIX_4_TMP[10]		=	{0.7877,    0.0414,    0.0346   , 0.0393,    0.0970,    0.8476,    0.0330,    0.0311,    0.0354,    0.0529};
+			double MATRIX_1_TMP[14]		=	{0.4479,    0.0172    0.1388    0.1874    0.1233    0.0839    0.0014    0.6273    0.0271    0.0536    0.1173    0.1066    0.0671    0.0010};
+			double MATRIX_2_TMP[10] 	= 	{0.5118    0.2929    0.1701    0.0252    0.0000    0.6725    0.1697    0.1160    0.0365    0.0053};
+			double MATRIX_3_TMP[8]		=	{0.9254    0.0038    0.0155    0.0553    0.9365    0.0001    0.0008    0.0626};
+			double MATRIX_4_TMP[10]		=	{0.7877    0.0414    0.0346    0.0393    0.0970    0.8476    0.0330    0.0311    0.0354    0.0529};
 			
 			MATRIX_1 = (double *) malloc(sizeof(double) * 14);
 			memcpy(MATRIX_1, MATRIX_1_TMP, sizeof(double) * 14);
@@ -192,7 +188,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 			MATRIX_3 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_3, MATRIX_3_TMP, sizeof(double) * 8);
 
-			MATRIX_4 = (double *) malloc(sizeof(double) * 10);
+			MATRIX_4 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_4, MATRIX_4_TMP, sizeof(double) * 10);
 		break;
 		}
@@ -211,7 +207,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 			MATRIX_3 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_3, MATRIX_3_TMP, sizeof(double) * 8);
 
-			MATRIX_4 = (double *) malloc(sizeof(double) * 10);
+			MATRIX_4 = (double *) malloc(sizeof(double) * 8);
 			memcpy(MATRIX_4, MATRIX_4_TMP, sizeof(double) * 10);
 		}
 	}
@@ -288,15 +284,13 @@ Bayes::Collect(void)
 		uint32_t i ;
 		double x_values[4];
 		int bayesCheck;
-		
 		for ( i = 0; i < m_nodes; i++){
 
-		
+
 
 			bayesCheck = 0;
 			m_tx_retx.at(i).first	=	m_tx_vector.at(i)->GetTxPackets()		- 	m_tx_retx_temp.at(i).first ;
 			m_tx_retx.at(i).second =	m_retx_vector.at(i)->GetNumberRetx()	- 	m_tx_retx_temp.at(i).second;
-			
 			x_values[0]=m_tx_retx.at(i).first;
 			x_values[1]=m_tx_retx.at(i).second;
 			
@@ -312,33 +306,20 @@ Bayes::Collect(void)
 			{
 		        counter++;
 			}
-			// printf("Counter: %d \n" , counter);
-			if(counter > 8)
-				counter =8;
-
-			x_values[2]	=  8 - counter;
+			x_values[2]	=  4 - counter;
 		
-			// x_values[3]	= 1;
-			// NS_LOG_UNCOND("BAYES " << Simulator::Now().GetSeconds());			
-			
-			// Ptr<WifiMacQueue> m_queue = mac_queue.at(i)->GetQueue();
-			Ptr<WifiMacQueue> m_queue = m_retx_vector.at(i)->GetQueue();
-			// NS_LOG_UNCOND("BAYES " << Simulator::Now().GetSeconds() << " " << m_queue->GetSize());			
-			x_values[3]	= m_queue->GetSize();
-			
+			x_values[3]	= mac_queue.at(i)->getSize();
 
-
-			// NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << x_values[3]);			
 			//FUNZIONE DI CALCOLO DELLE PROBABILITA'
 			double * mobilityProbability = ComputationPosteriori(x_values);
 		
 			if (Simulator::Now().GetSeconds()>m_start)
 			{
 			// check whether we need to increase the rate of topology discovery messages		        		        
-					// NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[0] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);			
+
 				        if ((mobilityProbability[0] * 100) >= percentageMove )          
 						{
-							
+							NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " " <<(mobilityProbability[0] * 100) << " " << percentageMove);			
 					        if (!m_discovery)
 					        {
 						        Bayes::ForceTopologyDiscovery();   
@@ -349,9 +330,6 @@ Bayes::Collect(void)
 					        m_corr 		= false;	
 					        bayesCheck = 1;			
 			        	}
-			        	// else
-			        	// NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " " <<(mobilityProbability[0] * 100) << " " << percentageMove);			
-
 			}//if	
 
 		//MATTEO
@@ -428,13 +406,12 @@ double * ComputationPosteriori(double * x_values )
 	int indexRow , indexColumn 	=	0;
 	double level_mactx[6] 		= 	{0.5000,    1.5000,   25.5000,   50.5000,   75.5000,  100.5000};
 	double level_retx[4] 		= 	{0.5000,    6.5000,   12.5000,   24.5000};
-	double level_table[3] 		=	{0.5, 1.5, 2.5};
 	double level_queue[4] 		=	{1.5, 3.5, 7.5, 15.5};
-	
+	double level_table[3] 		=	{0.5, 1.5, 2.5};
 
 	posterior[0]=0.5513;
 	posterior[1]=1-posterior[0];
-	for (ii	=	0; ii < 4 ; ii++)
+	for (ii	=	0; ii < 3 ; ii++)
 	{
 		switch (ii){
 			case 0:
@@ -442,30 +419,21 @@ double * ComputationPosteriori(double * x_values )
 				while(x_values[ii] > level_mactx[quantize] && quantize < 6 ){
 					quantize=quantize+1;
 				}
-				if(quantize > 0)
-					indexRow =  (quantize*2)-2;
-				else
-					indexRow = 0;
+				indexRow =  (quantize*2)-2;
 				indexColumn = indexRow+1;
 				posterior[0] = posterior[0] * MATRIX_1[indexRow];
 				posterior[1] = posterior[1] * MATRIX_1[indexColumn];
-				// printf("TX: %f %f \n" , posterior[0],posterior[1]);
-				// printf("TX: INDEX:%d %f %f \n" , indexRow ,MATRIX_1[indexRow],MATRIX_1[indexColumn]);
+
 			break;
 			case 1:
 				quantize=0;
 				while(x_values[ii] > level_retx[quantize] && quantize < 4 ){
 					quantize=quantize+1;
 				}
-				if(quantize > 0)
-					indexRow =  (quantize*2)-2;
-				else
-					indexRow = 0;
+				indexRow =  (quantize*2)-2;
 				indexColumn = indexRow+1;
 				posterior[0] = posterior[0] * MATRIX_2[indexRow];
 				posterior[1] = posterior[1] * MATRIX_2[indexColumn];
-				// printf("RT: %f %f \n" , posterior[0],posterior[1]);
-				// printf("RT: %f %f \n" , MATRIX_2[indexRow],MATRIX_2[indexColumn]);
 			break;
 
 			case 2:
@@ -473,30 +441,21 @@ double * ComputationPosteriori(double * x_values )
 				while(x_values[ii] > level_table[quantize] && quantize < 3){
 					quantize=quantize+1;
 				}
-				if(quantize > 0)
-					indexRow =  (quantize*2)-2;
-				else
-					indexRow = 0;
+				indexRow =  (quantize*2)-2;
 				indexColumn = indexRow+1;
 				posterior[0] = posterior[0] * MATRIX_3[indexRow];
 				posterior[1] = posterior[1] * MATRIX_3[indexColumn];
-				// printf("TA: %f %f \n" , MATRIX_3[indexRow],MATRIX_3[indexColumn]);			
 			break;
 
 			case 3:
 				quantize=0;
-				while(x_values[ii] > level_queue[quantize] && quantize < 4){
+				while(x_values[ii] > level_queue[quantize] && quantize < 3){
 					quantize=quantize+1;
 				}
-				if(quantize > 0)
-					indexRow =  (quantize*2)-2;
-				else
-					indexRow = 0;
+				indexRow =  (quantize*2)-2;
 				indexColumn = indexRow+1;
 				posterior[0] = posterior[0] * MATRIX_4[indexRow];
 				posterior[1] = posterior[1] * MATRIX_4[indexColumn];
-				// printf("Q: %f %f \n" , posterior[0],posterior[1]);
-				// printf("RT: %f %f \n" , MATRIX_4[indexRow],MATRIX_4[indexColumn]);
 			break;
 		
 		}//switch
