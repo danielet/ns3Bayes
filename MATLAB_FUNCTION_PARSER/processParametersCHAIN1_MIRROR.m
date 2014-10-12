@@ -43,6 +43,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 thr(counter, 2) = thr(counter-1, 2);
             end
         end
+%         thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8)/sample; %%???? non serve dividere per sample
         thr(counter,3) = ((thr(counter,2) - thr(counter-1,2))*8)/sample; %%???? non serve dividere per sample
         counter = counter + 1;
         trg = trg + sample;

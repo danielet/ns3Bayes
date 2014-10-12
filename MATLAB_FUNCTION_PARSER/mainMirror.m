@@ -3,7 +3,7 @@ function mainMirror(varDir ,nameEXP , ctrlOther)
     simuTime=900; 
     sample=0.1;
     collect = 0; % set to 1 only when we found the correct starting point
-    startTime = 200;
+    startTime = 500;
     if(checkAllFile() == 1)
         load 'CongestionWindow_node_0.txt'
 

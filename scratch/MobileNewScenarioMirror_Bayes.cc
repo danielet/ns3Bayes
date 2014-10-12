@@ -260,7 +260,6 @@ if(atoi(argv[4]) == 0)
 	MobilityHelper mobility;
 	Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();
 	double in_pos = 0.0;
-	//PERCHE' 100m?? 802.11a non tira fino a 50m?!
 	
 
 	//FIRST H NODE SETTED UP
@@ -500,7 +499,14 @@ if(atoi(argv[5]) == 1){
 	sinkAppsTraffic.Stop (Seconds (1000.0));
 
 
-	// //SECOND CHAIN
+	NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << interfaces.GetAddress ((int)floor((float)n_nodes/2))); 
+	printf("Node %d\n " , (int)floor((float)n_nodes/2));
+	printf("Node 0\n" );
+	printf("Node %d\n" , (int)ceil((float)n_nodes/2));
+	printf("Node %d\n" , n_nodes-1);
+	NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << interfaces.GetAddress (n_nodes-1)); 
+
+	// // //SECOND CHAIN
 	Address sinkLocalAddressReceiver2(InetSocketAddress (interfaces.GetAddress (n_nodes-1), port));
 	BulkSendHelper source2FTP ("ns3::TcpSocketFactory",sinkLocalAddressReceiver2);
 	source2FTP.SetAttribute ("MaxBytes", UintegerValue (maxBytes));

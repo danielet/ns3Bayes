@@ -319,10 +319,11 @@ Bayes::Collect(void)
 			x_values[2]	=  8 - counter;
 		
 			// x_values[3]	= 1;
-			// NS_LOG_UNCOND("BAYES " << Simulator::Now().GetSeconds());			
 			
-			// Ptr<WifiMacQueue> m_queue = mac_queue.at(i)->GetQueue();
+
+			//QUESTO POTREBBE CREARE PROBLEMI IN FASE DI RETRIEVING DELLE CODE
 			Ptr<WifiMacQueue> m_queue = m_retx_vector.at(i)->GetQueue();
+			
 			// NS_LOG_UNCOND("BAYES " << Simulator::Now().GetSeconds() << " " << m_queue->GetSize());			
 			x_values[3]	= m_queue->GetSize();
 			
@@ -336,7 +337,7 @@ Bayes::Collect(void)
 			{
 			// check whether we need to increase the rate of topology discovery messages		        		        
 					// NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[0] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);			
-				        if ((mobilityProbability[0] * 100) >= percentageMove )          
+				        if ((mobilityProbability[1] * 100) >= percentageMove )          
 						{
 							
 					        if (!m_discovery)
@@ -355,27 +356,28 @@ Bayes::Collect(void)
 			}//if	
 
 		//MATTEO
-		  if(FILE_DIC_BayesCtrl.find(i) == FILE_DIC_BayesCtrl.end())
-		  {
-		    FILE* log_file;
-		    char* fname = (char*)malloc(sizeof(char) * 255);  
-		    memset(fname, 0, sizeof(char) * 255);
-		    sprintf(fname, "BAYES_CHECK_by_node_%d.txt", i);
+		  // if(FILE_DIC_BayesCtrl.find(i) == FILE_DIC_BayesCtrl.end())
+		  // {
+		  //   FILE* log_file;
+		  //   char* fname = (char*)malloc(sizeof(char) * 255);  
+		  //   memset(fname, 0, sizeof(char) * 255);
+		  //   sprintf(fname, "BAYES_CHECK_by_node_%d.txt", i);
 		    
-		    log_file = fopen(fname, "w+");
-		    FILE_DIC_BayesCtrl[i] = log_file;
-		    if(fname)
-		      free(fname);
-		      fprintf(log_file, "%f\t %d \n", Simulator::Now().GetSeconds(), bayesCheck);
-		      fflush(log_file);
-		    }
-		    else
-		    {
-		      FILE * log_file = FILE_DIC_BayesCtrl.at(i);
-		      fprintf(log_file, "%f\t %d \n", Simulator::Now().GetSeconds(), bayesCheck );
-		      fflush(log_file);
-		    }
+		  //   log_file = fopen(fname, "w+");
+		  //   FILE_DIC_BayesCtrl[i] = log_file;
+		  //   if(fname)
+		  //     free(fname);
+		  //     fprintf(log_file, "%f\t %d \n", Simulator::Now().GetSeconds(), bayesCheck);
+		  //     fflush(log_file);
+		  //   }
+		  //   else
+		  //   {
+		  //     FILE * log_file = FILE_DIC_BayesCtrl.at(i);
+		  //     fprintf(log_file, "%f\t %d \n", Simulator::Now().GetSeconds(), bayesCheck );
+		  //     fflush(log_file);
+		  //   }
 
+		}//for
 		
 		//CHECKED IF THERE WAS MOBILITY IF YES STEP AWAY
 		//OTHERWIRSE CHECK IF THE TABLES ARE CORRUPTED	
@@ -402,18 +404,10 @@ Bayes::Collect(void)
 				}
 			// }
 		}
-		// 	else if (m_corruptedIPtables)
-		// 	{
-		// 		if (!m_corr)
-		// 		{
-		// 			//NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " increase OLSR msg rate because there are corrupted IP tables"); 
-		// 			Bayes::ForceTopologyDiscovery();  
-		// 			m_corr = true;
-	 //                m_stability = false;
-		// 		}
-		// 	}	
+		// else
+		// {
+		// 	NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[0] * 100) << " " <<(mobilityProbability[1] * 100) << " " << percentageMove );			
 		// }
-	}
 }
 
 
@@ -446,6 +440,7 @@ double * ComputationPosteriori(double * x_values )
 					indexRow =  (quantize*2)-2;
 				else
 					indexRow = 0;
+
 				indexColumn = indexRow+1;
 				posterior[0] = posterior[0] * MATRIX_1[indexRow];
 				posterior[1] = posterior[1] * MATRIX_1[indexColumn];
@@ -461,6 +456,7 @@ double * ComputationPosteriori(double * x_values )
 					indexRow =  (quantize*2)-2;
 				else
 					indexRow = 0;
+
 				indexColumn = indexRow+1;
 				posterior[0] = posterior[0] * MATRIX_2[indexRow];
 				posterior[1] = posterior[1] * MATRIX_2[indexColumn];

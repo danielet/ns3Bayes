@@ -65,7 +65,9 @@ TcpNewReno::TcpNewReno (void)
   : m_retxThresh (3), // mute valgrind, actual value set by the attribute system
     m_inFastRec (false),
     m_limitedTx (false) // mute valgrind, actual value set by the attribute system
+    
 {
+  printf("CREATE TCP NEWRENO\n");
   NS_LOG_FUNCTION (this);
 }
 
@@ -78,6 +80,7 @@ TcpNewReno::TcpNewReno (const TcpNewReno& sock)
     m_inFastRec (false),
     m_limitedTx (sock.m_limitedTx) 
 {
+  printf("CREATE TCP NEWRENO");
   NS_LOG_FUNCTION (this);
   NS_LOG_LOGIC ("Invoked the copy constructor");
   
@@ -108,6 +111,8 @@ int
 TcpNewReno::Connect (const Address & address)
 {
   NS_LOG_FUNCTION (this << address);
+  // printf("OPEN CONNECTOIN %s" , address);
+  NS_LOG_UNCOND("OPEN CONNECTOIN " <<address);
   InitializeCwnd ();
   return TcpSocketBase::Connect (address);
 }
