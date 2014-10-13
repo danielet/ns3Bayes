@@ -48,6 +48,14 @@ while trg < ACK_received_by_node_5(length(ACK_received_by_node_5),1)
 end
 
 
+if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            thr(counter, 3) = 0;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+
 % plot(ACK_received_by_node_5(:,2) , 'r' )
 % grid on
 % hold off
@@ -112,6 +120,15 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            cong_win(counter, 2) = 0;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
     % trg = startTime;
     % counter = 1;
     % num_dig = 1;
@@ -174,6 +191,14 @@ if(ctrlOther == 1)
     end
 
 
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            q5(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
     trg = startTime;
     counter = 1;
     num_dig = 1;
@@ -196,6 +221,15 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            q6(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
     trg = startTime;
     counter = 1;
     num_dig = 1;
@@ -218,6 +252,14 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            q7(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
     trg = startTime;
     counter = 1;
     num_dig = 1;
@@ -240,6 +282,13 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            q8(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -309,6 +358,15 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            cont_win6(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
     trg = startTime;
     counter = 1;
     num_dig = 1;
@@ -343,6 +401,15 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            cont_win7(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
+    
     trg = startTime;
     counter = 1;
     num_dig = 1;
@@ -375,6 +442,14 @@ if(ctrlOther == 1)
         counter = counter + 1;
         trg = trg + sample;
         trg = round(trg*(10^num_dig))/(10^num_dig);
+    end
+    
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            cont_win8(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
     end
 
     trg = startTime;
@@ -412,9 +487,17 @@ if(ctrlOther == 1)
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
-    trg = startTime;
-    counter = 1;
-    num_dig = 1;
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            cont_win9(counter, 2) = 1;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
+%     trg = startTime;
+%     counter = 1;
+%     num_dig = 1;
 
 
 

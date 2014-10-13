@@ -9,7 +9,9 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
     datetime=strrep(datetime,'-','_'); %Replace minus sign with underscore
     datetime=strrep(datetime,' ','_'); %Replace space with underscore
     datetime = strcat('ChainH_',datetime);
-
+    
+    wheresave=strcat(varDir,'/',nameEXP,'/');
+    datetime = strcat(wheresave,datetime);
 
     load('ACK_received_by_node_0.txt')
 
@@ -50,6 +52,16 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
         trg = round(trg*(10^num_dig))/(10^num_dig);
     end
 
+    
+    if(trg < simuTime - sample)
+        while (trg < simuTime - sample) 
+            thr(counter, 3) = 0;
+            counter = counter + 1;
+            trg = trg + sample;
+        end
+    end
+    
+    
     mobility_vectorH = zeros(length(thr(:,1)),2);
 %     mobility_vectorH(:,1) = thr(:,1);
 %     N=100;
@@ -59,8 +71,9 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
 %         end    
 %     end
 
-    wheresave=strcat(varDir,'/',nameEXP,'/');
-    datetime = strcat(wheresave,datetime);
+
+
+    
     if(ctrOTHER ==1)
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,6 +120,15 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                cong_win(counter, 2) = 0;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         % trg = startTime;
         % counter = 1;
         % num_dig = 1;
@@ -175,6 +197,14 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
         end
 
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                q0(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -197,6 +227,14 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                q1(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -219,6 +257,14 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                q2(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -241,6 +287,14 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                q3(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -263,6 +317,13 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                q4(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
         
 
 
@@ -340,6 +401,15 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                cont_win1(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -374,6 +444,15 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                cont_win2(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -408,6 +487,14 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                cont_win3(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -442,6 +529,14 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                cont_win4(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
+        
         trg = startTime;
         counter = 1;
         num_dig = 1;
@@ -476,6 +571,13 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             trg = round(trg*(10^num_dig))/(10^num_dig);
         end
 
+        if(trg < simuTime - sample)
+            while (trg < simuTime - sample) 
+                cont_win5(counter, 2) = 1;
+                counter = counter + 1;
+                trg = trg + sample;
+            end
+        end
 
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
