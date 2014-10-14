@@ -34,6 +34,8 @@
 #include "ns3/uinteger.h"
 #include "ns3/log.h"
 
+#include <math.h>
+
 NS_LOG_COMPONENT_DEFINE ("RttEstimator");
 
 namespace ns3 {
@@ -269,6 +271,7 @@ RttMeanDeviation::GetInstanceTypeId (void) const
 void RttMeanDeviation::Measurement (Time m)
 {
   NS_LOG_FUNCTION (this << m);
+  Time retval ;
   if (m_nSamples)
     { // Not first
       Time err (m - m_currentEstimatedRtt);
@@ -293,14 +296,32 @@ Time RttMeanDeviation::RetransmitTimeout ()
   NS_LOG_FUNCTION (this);
   NS_LOG_DEBUG ("RetransmitTimeout:  var " << m_variance.GetSeconds () << " est " << m_currentEstimatedRtt.GetSeconds () << " multiplier " << m_multiplier);
   // RTO = srtt + 4* rttvar
+  Time retval;
   int64_t temp = m_currentEstimatedRtt.ToInteger (Time::MS) + 4 * m_variance.ToInteger (Time::MS);
   if (temp < m_minRto.ToInteger (Time::MS))
     {
       temp = m_minRto.ToInteger (Time::MS);
     } 
+  // NS_LOG_UNCOND(Simulator::Now().GetSeconds()<< );      
   temp = temp * m_multiplier; // Apply backoff
-  Time retval = Time::FromInteger (temp, Time::MS);
-  NS_LOG_DEBUG ("RetransmitTimeout:  return " << retval.GetSeconds ());
+  Time tmpTIME = Time::FromInteger (temp, Time::MS);
+  Time m  =  Seconds (10.0);
+  if(tmpTIME.GetSeconds() > m.GetSeconds() )
+  {
+   
+   retval  = Time::FromInteger (10000, Time::MS);  
+    NS_LOG_UNCOND ( Simulator::Now().GetSeconds()  << " RetransmitTimeout:  return " << tmpTIME.GetSeconds() << " " << retval.GetSeconds());
+  }
+  else
+  {
+   retval = Time::FromInteger (temp, Time::MS);
+  }
+
+  
+
+  // retval = min(retval, Seconds(10);
+
+  // NS_LOG_DEBUG ("RetransmitTimeout:  return " << retval.GetSeconds ());
   return (retval);  
 }
 
