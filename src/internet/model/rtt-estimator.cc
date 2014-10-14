@@ -310,7 +310,7 @@ Time RttMeanDeviation::RetransmitTimeout ()
   {
    
    retval  = Time::FromInteger (10000, Time::MS);  
-    NS_LOG_UNCOND ( Simulator::Now().GetSeconds()  << " RetransmitTimeout:  return " << tmpTIME.GetSeconds() << " " << retval.GetSeconds());
+    // NS_LOG_UNCOND ( Simulator::Now().GetSeconds()  << " RetransmitTimeout:  return " << tmpTIME.GetSeconds() << " " << retval.GetSeconds());
   }
   else
   {
