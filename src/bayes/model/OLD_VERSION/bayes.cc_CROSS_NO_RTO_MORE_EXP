@@ -112,10 +112,10 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 	
 	switch (m_M){
 		case 5:{
-			double MATRIX_1_TMP[14]		=	{0.741139, 0.786205, 0.033860, 0.036945, 0.034421, 0.028583, 0.079541, 0.060649, 0.101820, 0.080074, 0.009145, 0.007409, 0.000075, 0.000133};
-			double MATRIX_2_TMP[10] 	= 	{0.784512, 0.831631, 0.052958, 0.040069, 0.070009, 0.055221, 0.085436, 0.068043, 0.007085, 0.005035};
-			double MATRIX_3_TMP[8]		=	{0.912898, 0.944010, 0.010230, 0.004644, 0.019586, 0.006765, 0.057286, 0.044580};
-			double MATRIX_4_TMP[10]		=	{0.919340, 0.939798, 0.035860, 0.026254, 0.031460, 0.024593, 0.012760, 0.008997, 0.000581, 0.000359};
+			double MATRIX_1_TMP[14]		=	{0.7729,    0.0356,    0.0264,    0.0647,    0.0921,    0.0082,    0.0001,    0.7895,    0.0371,    0.0261,    0.0634,    0.0765,    0.0073,    0.0001};
+			double MATRIX_2_TMP[10] 	= 	{0.8168,    0.0423,    0.0607,    0.0743,    0.0059,    0.8345,    0.0398,    0.0533,    0.0668,    0.0057};
+			double MATRIX_3_TMP[8]		=	{0.9158,    0.0092,    0.0161,    0.0588,    0.9470,    0.0054,    0.0072,    0.0404};
+			double MATRIX_4_TMP[10]		=	{0.9278,    0.0322,    0.0289,    0.0107,    0.0004,    0.9411,    0.0259,    0.0244,    0.0083,    0.0003};
 			MATRIX_1 = (double *) malloc(sizeof(double) * 14);
 			memcpy(MATRIX_1, MATRIX_1_TMP, sizeof(double) * 14);
 			MATRIX_2 = (double *) malloc(sizeof(double) * 10);
@@ -129,10 +129,10 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 		break;
 		}
 		case 10:{
-			double MATRIX_1_TMP[14]		=	{0.666567, 0.683721, 0.027439, 0.029691, 0.050379, 0.046758, 0.107610, 0.101950, 0.118807, 0.111778, 0.028981, 0.025904, 0.000217, 0.000197};
-			double MATRIX_2_TMP[10] 	= 	{0.709216, 0.727760, 0.103689, 0.095405, 0.116611, 0.109522, 0.067258, 0.064348, 0.003227, 0.002965};
-			double MATRIX_3_TMP[8]		=	{0.909802, 0.942632, 0.007752, 0.002311, 0.019604, 0.005279, 0.062842, 0.049777};
-			double MATRIX_4_TMP[10]		=	{0.867451, 0.887586, 0.047806, 0.040288, 0.049875, 0.042523, 0.031175, 0.026482, 0.003692, 0.003121};
+			double MATRIX_1_TMP[14]		=	{0.6815,    0.0282,    0.0424,    0.1012,    0.1177,    0.0287,    0.0001,    0.6935,    0.0299,    0.0405,    0.0980,    0.1107,    0.0273,    0.0002};
+			double MATRIX_2_TMP[10] 	= 	{0.7231,    0.0947,    0.1121,    0.0665,    0.0035,    0.7360,    0.0904,    0.1062,    0.0641,    0.0034};
+			double MATRIX_3_TMP[8]		=	{0.9091,    0.0072,    0.0178,    0.0659,    0.9419,    0.0022,    0.0062,    0.0498};
+			double MATRIX_4_TMP[10]		=	{0.8727,    0.0455,    0.0479,    0.0300,    0.0039,    0.8930,    0.0381,    0.0403,    0.0256,    0.0029};
 			MATRIX_1 = (double *) malloc(sizeof(double) * 14);
 			memcpy(MATRIX_1, MATRIX_1_TMP, sizeof(double) * 14);
 			MATRIX_2 = (double *) malloc(sizeof(double) * 10);
@@ -146,10 +146,10 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 		}
 		case 20:
 		{
-			double MATRIX_1_TMP[14]		=	{0.612152, 0.616253, 0.023744, 0.024279, 0.073376, 0.064487, 0.126039, 0.124918, 0.116577, 0.119747, 0.047578, 0.049850, 0.000535, 0.000467};
-			double MATRIX_2_TMP[10] 	= 	{0.658645, 0.661342, 0.162277, 0.152715, 0.134897, 0.138322, 0.042392, 0.045812, 0.001788, 0.001809};
-			double MATRIX_3_TMP[8]		=	{0.909510, 0.946169, 0.004369, 0.001714, 0.015713, 0.002927, 0.070408, 0.049190};
-			double MATRIX_4_TMP[10]		=	{0.831206, 0.845088, 0.044684, 0.040679, 0.049555, 0.045015, 0.052144, 0.047971, 0.022411, 0.021247};
+			double MATRIX_1_TMP[14]		=	{0.6263,    0.0244,    0.0710,    0.1221,    0.1099,    0.0458,    0.0004,    0.6284,    0.0250,    0.0618,    0.1235,    0.1143,    0.0465,    0.0005};
+			double MATRIX_2_TMP[10] 	= 	{0.6721,    0.1543,    0.1292,    0.0422,    0.0021,    0.6727,    0.1495,    0.1326,    0.0438,    0.0014};
+			double MATRIX_3_TMP[8]		=	{0.9079,    0.0047,    0.0164,    0.0710,    0.9493,    0.0019,    0.0031,    0.0457};
+			double MATRIX_4_TMP[10]		=	{0.8407,    0.0427,    0.0464,    0.0487,    0.0215,    0.8528,    0.0392,    0.0429,    0.0458,    0.0193};
 			MATRIX_1 = (double *) malloc(sizeof(double) * 14);
 			memcpy(MATRIX_1, MATRIX_1_TMP, sizeof(double) * 14);
 			MATRIX_2 = (double *) malloc(sizeof(double) * 10);
@@ -162,10 +162,10 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 		break;
 		}
 		case 50:{
-			double MATRIX_1_TMP[14]		=	{0.562509, 0.574924, 0.019697, 0.021253, 0.108980, 0.087046, 0.132951, 0.138194, 0.114473, 0.116759, 0.060663, 0.061113, 0.000726, 0.000711};
-			double MATRIX_2_TMP[10] 	= 	{0.619566, 0.625717, 0.213729, 0.203600, 0.136662, 0.138734, 0.028186, 0.030447, 0.001858, 0.001502};
-			double MATRIX_3_TMP[8]		=	{0.908195, 0.948296, 0.002587, 0.000851, 0.015018, 0.001667, 0.074201, 0.049187};
-			double MATRIX_4_TMP[10]		=	{0.809194, 0.826736, 0.040514, 0.037549, 0.036496, 0.035155, 0.042276, 0.038958, 0.071521, 0.061602};
+			double MATRIX_1_TMP[14]		=	{0.5775,    0.0206,    0.0982,    0.1312,    0.1118,    0.0601,    0.0007,    0.5882,    0.0217,    0.0790,    0.1329,    0.1145,    0.0629,    0.0008};
+			double MATRIX_2_TMP[10] 	= 	{0.6312,    0.2048,    0.1351,    0.0279,    0.0010,    0.6368,    0.1934,    0.1381,    0.0302,    0.0016};
+			double MATRIX_3_TMP[8]		=	{0.9102,    0.0021,    0.0162,    0.0716,    0.9497,    0.0006,    0.0023,    0.0473};
+			double MATRIX_4_TMP[10]		=	{0.8142,    0.0391,    0.0369,    0.0436,    0.0662,    0.8313,    0.0355,    0.0343,    0.0397,    0.0592};
 
 			MATRIX_1 = (double *) malloc(sizeof(double) * 14);
 			memcpy(MATRIX_1, MATRIX_1_TMP, sizeof(double) * 14);
@@ -180,10 +180,10 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 		}
 		case 100:
 		{
-			double MATRIX_1_TMP[14]		=	{0.530450, 0.570867, 0.017271, 0.020958, 0.126078, 0.098903, 0.147096, 0.133280, 0.113308, 0.108807, 0.064939, 0.066389, 0.000858, 0.000797};
-			double MATRIX_2_TMP[10] 	= 	{0.591613, 0.626676, 0.247134, 0.215806, 0.136236, 0.131325, 0.023493, 0.024695, 0.001525, 0.001498};
-			double MATRIX_3_TMP[8]		=	{0.911877, 0.951639, 0.002535, 0.000337, 0.014021, 0.001911, 0.071568, 0.046114};
-			double MATRIX_4_TMP[10]		=	{0.801876, 0.820917, 0.041661, 0.037409, 0.035064, 0.033279, 0.037126, 0.035577, 0.084273, 0.072818};
+			double MATRIX_1_TMP[14]		=	{0.5747,    0.0201,    0.0990,    0.1284,    0.1086,    0.0682,    0.0010,    0.5885,    0.0217,    0.0811,    0.1313,    0.1067,    0.0697,    0.0011};
+			double MATRIX_2_TMP[10] 	= 	{0.6302,    0.2139,    0.1305,    0.0242,    0.0012,    0.6382,    0.2024,    0.1322,    0.0263,    0.0009};
+			double MATRIX_3_TMP[8]		=	{0.9097,    0.0030,    0.0144,    0.0729,    0.9493,    0.0009,    0.0015,    0.0483};
+			double MATRIX_4_TMP[10]		=	{0.8082,    0.0385,    0.0337,    0.0363,    0.0833,    0.8234,    0.0337,    0.0313,    0.0355,    0.0761};
 			
 			MATRIX_1 = (double *) malloc(sizeof(double) * 14);
 			memcpy(MATRIX_1, MATRIX_1_TMP, sizeof(double) * 14);
@@ -269,13 +269,13 @@ Bayes::Collect(void)
 		m_mob = false;
 		uint32_t i ;
 		double x_values[4];
-		// int bayesCheck;
+		int bayesCheck;
 		
 		for ( i = 0; i < m_nodes; i++){
 
 		
 
-			// bayesCheck = 0;
+			bayesCheck = 0;
 			m_tx_retx.at(i).first	=	m_tx_vector.at(i)->GetTxPackets()		- 	m_tx_retx_temp.at(i).first ;
 			m_tx_retx.at(i).second =	m_retx_vector.at(i)->GetNumberRetx()	- 	m_tx_retx_temp.at(i).second;
 			
@@ -318,7 +318,7 @@ Bayes::Collect(void)
 			if (Simulator::Now().GetSeconds()>m_start)
 			{
 			// check whether we need to increase the rate of topology discovery messages		        		        
-					// NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[0] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);			
+					NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[0] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);			
 				        if ((mobilityProbability[1] * 100) >= percentageMove )          
 						{
 							
@@ -330,9 +330,7 @@ Bayes::Collect(void)
 					        m_discovery = true;
 					        m_stability = false;
 					        m_corr 		= false;	
-					        // bayesCheck = 1;	
-
-					        break;		
+					        bayesCheck = 1;			
 			        	}
 			        	// else
 			        	// NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " " <<(mobilityProbability[0] * 100) << " " << percentageMove);			

@@ -25,7 +25,7 @@ $NODES	=	9;
 # array schedule [30, 110, 190 ,270]
 # @nakagami =  (50);
 
-$percantageMove = 90;
+$percantageMove = 80;
 
 if ($MOVE == 0)
 {
