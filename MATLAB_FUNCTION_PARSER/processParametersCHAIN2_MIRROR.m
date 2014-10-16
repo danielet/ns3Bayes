@@ -198,6 +198,7 @@ if(ctrlOther == 1)
             q5(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
     
@@ -231,6 +232,7 @@ if(ctrlOther == 1)
             q6(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
     
@@ -263,6 +265,7 @@ if(ctrlOther == 1)
             q7(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
     
@@ -295,6 +298,7 @@ if(ctrlOther == 1)
             q8(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
 

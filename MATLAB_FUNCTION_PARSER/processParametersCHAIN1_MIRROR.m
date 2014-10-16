@@ -58,6 +58,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
             thr(counter, 3) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
     
@@ -126,6 +127,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 cong_win(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
+                trg = round(trg*(10^num_dig))/(10^num_dig);
             end
         end
         
@@ -203,6 +205,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 q0(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
+                trg = round(trg*(10^num_dig))/(10^num_dig);
             end
         end
         
@@ -235,6 +238,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 q1(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
+                trg = round(trg*(10^num_dig))/(10^num_dig);
             end
         end
         
@@ -267,6 +271,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 q2(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
+                trg = round(trg*(10^num_dig))/(10^num_dig);
             end
         end
         
@@ -299,6 +304,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 q3(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
+                trg = round(trg*(10^num_dig))/(10^num_dig);
             end
         end
         
@@ -331,6 +337,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 q4(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
+                trg = round(trg*(10^num_dig))/(10^num_dig);
             end
         end
         
