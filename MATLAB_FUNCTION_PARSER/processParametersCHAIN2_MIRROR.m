@@ -2,7 +2,7 @@
 % THROUGHPUT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function processParametersCHAIN2(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther )
+function processParametersCHAIN2_MIRROR(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther )
 
 datetime=datestr(now);
 datetime=strrep(datetime,':','_'); %Replace colon with underscore
@@ -49,10 +49,12 @@ end
 
 
 if(trg < simuTime - sample)
-        while (trg < simuTime - sample) 
+        while (trg < simuTime - sample)
+            thr(counter, 1) = trg;
             thr(counter, 3) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
 
@@ -122,10 +124,12 @@ if(ctrlOther == 1)
 
     
     if(trg < simuTime - sample)
-        while (trg < simuTime - sample) 
+        while (trg < simuTime - sample)
+            cong_win(counter, 1) = trg;
             cong_win(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
+            trg = round(trg*(10^num_dig))/(10^num_dig);
         end
     end
     
@@ -195,6 +199,7 @@ if(ctrlOther == 1)
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
 %             q5(counter, 2) = 1;
+            q5(counter, 1) = trg;
             q5(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
@@ -229,6 +234,7 @@ if(ctrlOther == 1)
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
 %             q6(counter, 2) = 1;
+            q6(counter, 1) = trg;
             q6(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
@@ -262,6 +268,7 @@ if(ctrlOther == 1)
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
 %             q7(counter, 2) = 1;
+            q7(counter, 1) = trg;
             q7(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
@@ -295,6 +302,7 @@ if(ctrlOther == 1)
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
 %             q8(counter, 2) = 1;
+            q8(counter, 1) = trg;
             q8(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
@@ -373,7 +381,8 @@ if(ctrlOther == 1)
     
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            cont_win6(counter, 2) = 1;
+            cont_win6(counter, 1) = trg;
+            cont_win6(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end
@@ -415,7 +424,8 @@ if(ctrlOther == 1)
 
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            cont_win7(counter, 2) = 1;
+            cont_win7(counter, 1) = trg;
+            cont_win7(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end
@@ -458,7 +468,8 @@ if(ctrlOther == 1)
     
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            cont_win8(counter, 2) = 1;
+            cont_win8(counter, 1) = trg;
+            cont_win8(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end
@@ -501,7 +512,8 @@ if(ctrlOther == 1)
 
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            cont_win9(counter, 2) = 1;
+            cont_win9(counter, 1) = trg;
+            cont_win9(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end

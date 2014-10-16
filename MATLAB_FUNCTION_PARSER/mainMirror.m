@@ -20,7 +20,9 @@ function mainMirror(varDir ,nameEXP , ctrlOther)
         fprintf('\nPHASE 1: processing parameters H CHAIN... \n\n')
         processParametersCHAIN1_MIRROR(startTime , simuTime, sample , varDir ,nameEXP ,ctrlOther ); 
 
-        startTime = 200;       
+        startTime = 500;       
+
+
         load 'CongestionWindow_node_5.txt'
 
         CongestionWindow_node_5(:,1) = round(CongestionWindow_node_5(:,1)*10)/10;

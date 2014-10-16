@@ -1,7 +1,7 @@
 clc
 close all
 clear all
-ctrOTHER = 0;
+ctrOTHER = 1;
 % global folders sub_folders gi gj
 % ii=1;
 folders=dir;
@@ -10,17 +10,17 @@ percentage = 90;
 
 
 
-% M5 = sprintf('NEW_MOVE_nakagamiM5');
-% M10 = sprintf('NEW_MOVE_nakagamiM10');
-% M20 = sprintf('NEW_MOVE_nakagamiM20');
-% M50 = sprintf('NEW_MOVE_nakagamiM50');
-% M100 = sprintf('NEW_MOVE_nakagamiM100');
+M5 = sprintf('NEW_MOVEnakagamiM5');
+M10 = sprintf('NEW_MOVEnakagamiM10');
+M20 = sprintf('NEW_MOVEnakagamiM20');
+M50 = sprintf('NEW_MOVEnakagamiM50');
+M100 = sprintf('NEW_MOVEnakagamiM100');
 
-M5 = sprintf('NEW_MOVE_nakagamiM5BAYES_PERC_%d', percentage);
-M10 = sprintf('NEW_MOVE_nakagamiM10BAYES_PERC_%d', percentage);
-M20 = sprintf('NEW_MOVE_nakagamiM20BAYES_PERC_%d', percentage);
-M50 = sprintf('NEW_MOVE_nakagamiM50BAYES_PERC_%d', percentage);
-M100 = sprintf('NEW_MOVE_nakagamiM100BAYES_PERC_%d', percentage);
+% M5 = sprintf('NEW_MOVE_nakagamiM5BAYES_PERC_%d', percentage);
+% M10 = sprintf('NEW_MOVE_nakagamiM10BAYES_PERC_%d', percentage);
+% M20 = sprintf('NEW_MOVE_nakagamiM20BAYES_PERC_%d', percentage);
+% M50 = sprintf('NEW_MOVE_nakagamiM50BAYES_PERC_%d', percentage);
+% M100 = sprintf('NEW_MOVE_nakagamiM100BAYES_PERC_%d', percentage);
 
 % M5 = sprintf('NEWNOBAYESRUN_nakagamiM5');
 % M10 = sprintf('NEWNOBAYESRUN_nakagamiM10');
