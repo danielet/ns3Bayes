@@ -182,7 +182,8 @@ if(ctrlOther == 1)
            if(counter ==1)
                 q5(counter, 2) = MAC_Queue_5(1,2);
             else
-               q5(counter, 2) = q5(counter-1, 2);
+%                q5(counter, 2) = q5(counter-1, 2);
+                q5(counter, 2) = 0;
             end
         end
         counter = counter + 1;
@@ -193,7 +194,8 @@ if(ctrlOther == 1)
 
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            q5(counter, 2) = 1;
+%             q5(counter, 2) = 1;
+            q5(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end
@@ -213,7 +215,8 @@ if(ctrlOther == 1)
            if(counter ==1)
                 q6(counter, 2) = MAC_Queue_6(1,2);
             else
-               q6(counter, 2) = q6(counter-1, 2);
+%                q6(counter, 2) = q6(counter-1, 2);
+                q6(counter, 2) = 0;
             end
         end
         counter = counter + 1;
@@ -224,7 +227,8 @@ if(ctrlOther == 1)
     
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            q6(counter, 2) = 1;
+%             q6(counter, 2) = 1;
+            q6(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end
@@ -244,7 +248,8 @@ if(ctrlOther == 1)
            if(counter ==1)
                 q7(counter, 2) = MAC_Queue_7(1,2);
             else
-               q7(counter, 2) = q7(counter-1, 2);
+%                q7(counter, 2) = q7(counter-1, 2);
+                q7(counter, 2) = 0;
             end
         end
         counter = counter + 1;
@@ -254,7 +259,8 @@ if(ctrlOther == 1)
 
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            q7(counter, 2) = 1;
+%             q7(counter, 2) = 1;
+            q7(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end
@@ -274,7 +280,8 @@ if(ctrlOther == 1)
            if(counter ==1)
                 q8(counter, 2) = MAC_Queue_8(1,2);
             else
-               q8(counter, 2) = q8(counter-1, 2);
+%                q8(counter, 2) = q8(counter-1, 2);
+                q8(counter, 2) = 0;
             end
         end
         counter = counter + 1;
@@ -284,7 +291,8 @@ if(ctrlOther == 1)
 
     if(trg < simuTime - sample)
         while (trg < simuTime - sample) 
-            q8(counter, 2) = 1;
+%             q8(counter, 2) = 1;
+            q8(counter, 2) = 0;
             counter = counter + 1;
             trg = trg + sample;
         end

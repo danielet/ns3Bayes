@@ -188,7 +188,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                 if(counter ==1)
                     q0(counter, 2) = MAC_Queue_0(1,2);
                 else
-                   q0(counter, 2) = q0(counter-1, 2);
+%                    q0(counter, 2) = q0(counter-1, 2);
+                   q0(counter, 2) = 0;
                 end
             end
             counter = counter + 1;
@@ -199,7 +200,7 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
 
         if(trg < simuTime - sample)
             while (trg < simuTime - sample) 
-                q0(counter, 2) = 1;
+                q0(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
             end
@@ -219,7 +220,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                if(counter ==1)
                     q1(counter, 2) = MAC_Queue_1(1,2);
                 else
-                   q1(counter, 2) = q1(counter-1, 2);
+%                    q1(counter, 2) =q1(counter-1, 2);
+                     q1(counter, 2) = 0;
                 end
             end
             counter = counter + 1;
@@ -229,7 +231,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
 
         if(trg < simuTime - sample)
             while (trg < simuTime - sample) 
-                q1(counter, 2) = 1;
+%                 q1(counter, 2) = 1;
+                q1(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
             end
@@ -249,7 +252,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                if(counter ==1)
                     q2(counter, 2) = MAC_Queue_2(1,2);
                 else
-                   q2(counter, 2) = q2(counter-1, 2);
+%                    q2(counter, 2) = q2(counter-1, 2);
+                   q2(counter, 2) = 0;
                 end
             end
             counter = counter + 1;
@@ -259,7 +263,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
 
         if(trg < simuTime - sample)
             while (trg < simuTime - sample) 
-                q2(counter, 2) = 1;
+%                 q2(counter, 2) = 1;
+                q2(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
             end
@@ -279,7 +284,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                if(counter ==1)
                     q3(counter, 2) = MAC_Queue_3(1,2);
                 else
-                   q3(counter, 2) = q3(counter-1, 2);
+%                    q3(counter, 2) = q3(counter-1, 2);
+                    q3(counter, 2) = 0;
                 end
             end
             counter = counter + 1;
@@ -289,7 +295,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
 
         if(trg < simuTime - sample)
             while (trg < simuTime - sample) 
-                q3(counter, 2) = 1;
+%                 q3(counter, 2) = 1;
+                q3(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
             end
@@ -309,7 +316,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
                if(counter ==1)
                     q4(counter, 2) = MAC_Queue_4(1,2);
                 else
-                   q4(counter, 2) = q4(counter-1, 2);
+%                    q4(counter, 2) = q4(counter-1, 2);
+                    q4(counter, 2) = 0;
                 end
             end
             counter = counter + 1;
@@ -319,7 +327,8 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
 
         if(trg < simuTime - sample)
             while (trg < simuTime - sample) 
-                q4(counter, 2) = 1;
+%                 q4(counter, 2) = 1;
+                q4(counter, 2) = 0;
                 counter = counter + 1;
                 trg = trg + sample;
             end
