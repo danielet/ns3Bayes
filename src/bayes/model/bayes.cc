@@ -339,27 +339,27 @@ Bayes::Collect(void)
 
 			}//if	
 
-		//MATTEO
-		  // if(FILE_DIC_BayesCtrl.find(i) == FILE_DIC_BayesCtrl.end())
-		  // {
-		  //   FILE* log_file;
-		  //   char* fname = (char*)malloc(sizeof(char) * 255);  
-		  //   memset(fname, 0, sizeof(char) * 255);
-		  //   sprintf(fname, "BAYES_CHECK_by_node_%d.txt", i);
+		// MATTEO
+		  if(FILE_DIC_BayesCtrl.find(i) == FILE_DIC_BayesCtrl.end())
+		  {
+		    FILE* log_file;
+		    char* fname = (char*)malloc(sizeof(char) * 255);  
+		    memset(fname, 0, sizeof(char) * 255);
+		    sprintf(fname, "BAYES_CHECK_by_node_%d.txt", i);
 		    
-		  //   log_file = fopen(fname, "w+");
-		  //   FILE_DIC_BayesCtrl[i] = log_file;
-		  //   if(fname)
-		  //     free(fname);
-		  //     fprintf(log_file, "%f\t %d \n", Simulator::Now().GetSeconds(), bayesCheck);
-		  //     fflush(log_file);
-		  //   }
-		  //   else
-		  //   {
-		  //     FILE * log_file = FILE_DIC_BayesCtrl.at(i);
-		  //     fprintf(log_file, "%f\t %d \n", Simulator::Now().GetSeconds(), bayesCheck );
-		  //     fflush(log_file);
-		  //   }
+		    log_file = fopen(fname, "w+");
+		    FILE_DIC_BayesCtrl[i] = log_file;
+		    if(fname)
+		      free(fname);
+		      fprintf(log_file, "%f\t %f \n", Simulator::Now().GetSeconds(), mobilityProbability[1]);
+		      fflush(log_file);
+		    }
+		    else
+		    {
+		      FILE * log_file = FILE_DIC_BayesCtrl.at(i);
+		      fprintf(log_file, "%f\t %f \n", Simulator::Now().GetSeconds(), mobilityProbability[1] );
+		      fflush(log_file);
+		    }
 
 		}//for
 		
