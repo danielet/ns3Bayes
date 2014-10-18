@@ -14,7 +14,7 @@ close(SEEDS);
 $tot_seeds = 1;
 $line_seed = 1;
 
-$BAYES 	= 	1;
+$BAYES 	= 	0;
 $MOVE 	=	1;
 $NODES	=	9;
 

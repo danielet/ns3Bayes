@@ -277,6 +277,9 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
   int node = (int) buf[3];
   int counter = 0;
 
+
+  // int checkPrint =0;
+
   for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
        iter != m_table.end (); iter++)
     {
@@ -285,26 +288,30 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
       if (Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) != "")
         {
           *os << Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) << "\t\t";
+          
         }
       else
         {
+          // counter++;
+          // if(counter > 8)
+          //   NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node);
           *os << iter->second.interface << "\t\t";
         }
       *os << iter->second.distance << "\t";
       *os << "\n";
-      counter++;
+      
+      // if(counter >= 9){
+        // NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " node " << node << " " << iter->first);
+        // checkPrint=1;
+
+      // }
+
     }
-  // Also print the HNA routing table
-  // *os << " HNA Routing Table:\n";
-  // m_hnaRoutingTable->PrintRoutingTable (stream);
-
-//MATTEO
-//NS_LOG_DEBUG("At time " << Simulator::Now().GetSeconds() << " node " << node << ", hello interval " << m_helloInterval.GetSeconds() << " and TC interval = " << m_tcInterval.GetSeconds() << ", hold hello " << m_holdHello.GetSeconds() << " and hold TC = " << m_holdTc.GetSeconds());
-//MATTEO collection
-
-  // counter =  3 - counter ;
 
 
+counter = m_table.size();
+if (counter > 8)
+  counter = 8;
   if(FILE_DIC.find(node) == FILE_DIC.end())
   {
     FILE* log_file;

@@ -289,14 +289,14 @@ Bayes::Collect(void)
 
 			std::map<Ipv4Address, olsr::RoutingTableEntry> check;
 			check=m_olsr_vector.at(i)->GetTable(); 
-			uint32_t counter = 0;
-			for (std::map<Ipv4Address, olsr::RoutingTableEntry>::const_iterator iter = check.begin (); iter != check.end (); iter++)
-			{
-		        counter++;
-			}
+			uint32_t counter = check.size();
+			// for (std::map<Ipv4Address, olsr::RoutingTableEntry>::const_iterator iter = check.begin (); iter != check.end (); iter++)
+			// {
+		 //        counter++;
+			// }
 			// printf("Counter: %d \n" , counter);
 			if(counter > 8)
-				counter =8;
+				counter = 8;
 
 			x_values[2]	=  8 - counter;
 		
