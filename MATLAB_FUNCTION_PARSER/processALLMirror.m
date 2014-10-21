@@ -6,7 +6,7 @@ ctrOTHER = 1;
 % ii=1;
 folders=dir;
 PATH = pwd;
-percentage = 90;
+percentage = 100;
 
 
 
