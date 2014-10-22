@@ -311,9 +311,6 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
 
 
 
-
-
-
 counter = m_table.size();
 if (counter > 8)
   counter = 8;
@@ -332,37 +329,30 @@ if (counter > 8)
       free(fname);
 
 
-    // fprintf(log_file, "%f\t %lu", Simulator::Now().GetSeconds(), m_table.size() );
+  
 
-
+    counter = 0;
     for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
        iter != m_table.end (); iter++)
     {
-
-
       *os << iter->first;   
-      // String s  = iter->first.toS;
-      // fprintf(log_file, "\t %u", iter->first.Get() );
-      // NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node <<  " " <<  iter->first);
-      
+      counter++;      
     }
-    printf("ARRIVO QUA\n");
-    // *log_file << "TEST";
-    *log_file << Simulator::Now().GetSeconds()<<"\t"<< node << "\t" << m_table.size() << "\n" ;
-    // *log_file << *os << "\n" ;
+  *log_file << Simulator::Now().GetSeconds()<<"\t"<< node << "\t" << m_table.size() << "\t" ;
+    while(counter < 9 ){
+      *log_file << "0.0.0.0 \t";
+      counter++;
+    }
+      
+    
+    *log_file << "\n" ;
     log_file->flush();
-    // log_file.write(os);
-
-    // fprintf(log_file, "\n");
-    //STAMPO LE ROUTING TABLE
-
-    // fflush(log_file);
   }
   else
   {
+    counter = 0;
     std::ofstream * log_file = FILE_DIC.at(node);
-    // fprintf(log_file, "%f\t %i", Simulator::Now().GetSeconds(), counter);
-    // printf("ARRIVO QUA 2\n");
+    
     *log_file << Simulator::Now().GetSeconds()<<"\t"<< node << "\t" << m_table.size() << "\t" ;
     for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
        iter != m_table.end (); iter++)
@@ -372,22 +362,17 @@ if (counter > 8)
       // *os << iter->first;      
       *log_file << iter->first << "\t";
       // NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node <<  " " <<  iter->first);
-      
+      counter++;      
     }
 
-    // log_file << *os;
+    while(counter < 9 ){
+      *log_file << "0.0.0.0 \t";
+      counter++;
+    }
+    
     
     *log_file << "\n" ;
-    log_file->flush();
-    // std::stringstream ss;
-    // ss << os->rdbuf();
-    // fprintf(log_file, "%s", ss.c_str() );
-
-    
-
-    //STAMPO LE ROUTING TABLE
-
-    // fflush(log_file);
+    log_file->flush();  
   }
 
 
