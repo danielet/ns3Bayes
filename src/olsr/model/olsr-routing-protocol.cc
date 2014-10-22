@@ -49,6 +49,7 @@
 #include "ns3/ipv4-header.h"
 
 
+
 #include <stdio.h>
 
 /********** Useful macros **********/
@@ -144,7 +145,7 @@
 namespace ns3 {
 namespace olsr {
 
-std::map<int , FILE *> RoutingProtocol::FILE_DIC;
+std::map<int , std::ofstream *> RoutingProtocol::FILE_DIC;
 NS_LOG_COMPONENT_DEFINE ("OlsrRoutingProtocol");
 
 
@@ -269,7 +270,7 @@ void
 RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
 {
   std::ostream* os = stream->GetStream ();
-  *os << "Destination\t\tNextHop\t\tInterface\tDistance\n";
+  // *os << "Destination\t\tNextHop\t\tInterface\tDistance\n";
 
 //MATTEO
   uint8_t buf[4];
@@ -280,33 +281,37 @@ RoutingProtocol::PrintRoutingTable (Ptr<OutputStreamWrapper> stream) const
 
   // int checkPrint =0;
 
-  for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
-       iter != m_table.end (); iter++)
-    {
-      *os << iter->first << "\t\t";
-      *os << iter->second.nextAddr << "\t\t";
-      if (Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) != "")
-        {
-          *os << Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) << "\t\t";
+  // for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
+  //      iter != m_table.end (); iter++)
+  //   {
+  //     *os << iter->first << "\t\t";
+  //     *os << iter->second.nextAddr << "\t\t";
+  //     if (Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) != "")
+  //       {
+  //         *os << Names::FindName (m_ipv4->GetNetDevice (iter->second.interface)) << "\t\t";
           
-        }
-      else
-        {
-          // counter++;
-          // if(counter > 8)
-          //   NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node);
-          *os << iter->second.interface << "\t\t";
-        }
-      *os << iter->second.distance << "\t";
-      *os << "\n";
+  //       }
+  //     else
+  //       {
+  //         // counter++;
+  //         // if(counter > 8)
+  //         //   NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node);
+  //         *os << iter->second.interface << "\t\t";
+  //       }
+  //     *os << iter->second.distance << "\t";
+  //     *os << "\n";
       
-      // if(counter >= 9){
-        // NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " node " << node << " " << iter->first);
-        // checkPrint=1;
+  //     // if(counter >= 9){
+  //       // NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " node " << node << " " << iter->first);
+  //       // checkPrint=1;
 
-      // }
+  //     // }
 
-    }
+  //   }
+
+
+
+
 
 
 counter = m_table.size();
@@ -314,22 +319,75 @@ if (counter > 8)
   counter = 8;
   if(FILE_DIC.find(node) == FILE_DIC.end())
   {
-    FILE* log_file;
+    
     char* fname = (char*)malloc(sizeof(char) * 255);  
     memset(fname, 0, sizeof(char) * 255);
     sprintf(fname, "routing_tables_%d.txt", node);
-    log_file = fopen(fname, "w+");
-    FILE_DIC[node] = log_file;
+
+    
+    // log_file = fopen(fname, "w+");
+    FILE_DIC[node] = new std::ofstream(fname);
+    std::ofstream * log_file =  FILE_DIC.at(node);
     if(fname)
       free(fname);
-    fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), counter);
-    fflush(log_file);
+
+
+    // fprintf(log_file, "%f\t %lu", Simulator::Now().GetSeconds(), m_table.size() );
+
+
+    for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
+       iter != m_table.end (); iter++)
+    {
+
+
+      *os << iter->first;   
+      // String s  = iter->first.toS;
+      // fprintf(log_file, "\t %u", iter->first.Get() );
+      // NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node <<  " " <<  iter->first);
+      
+    }
+    printf("ARRIVO QUA\n");
+    // *log_file << "TEST";
+    *log_file << Simulator::Now().GetSeconds()<<"\t"<< node << "\t" << m_table.size() << "\n" ;
+    // *log_file << *os << "\n" ;
+    log_file->flush();
+    // log_file.write(os);
+
+    // fprintf(log_file, "\n");
+    //STAMPO LE ROUTING TABLE
+
+    // fflush(log_file);
   }
   else
   {
-    FILE * log_file = FILE_DIC.at(node);
-    fprintf(log_file, "%f\t %i\n", Simulator::Now().GetSeconds(), counter);
-    fflush(log_file);
+    std::ofstream * log_file = FILE_DIC.at(node);
+    // fprintf(log_file, "%f\t %i", Simulator::Now().GetSeconds(), counter);
+    // printf("ARRIVO QUA 2\n");
+    *log_file << Simulator::Now().GetSeconds()<<"\t"<< node << "\t" << m_table.size() << "\t" ;
+    for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator iter = m_table.begin ();
+       iter != m_table.end (); iter++)
+    {
+
+      // std::string s  = iter->first.ToString();
+      // *os << iter->first;      
+      *log_file << iter->first << "\t";
+      // NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node <<  " " <<  iter->first);
+      
+    }
+
+    // log_file << *os;
+    
+    *log_file << "\n" ;
+    log_file->flush();
+    // std::stringstream ss;
+    // ss << os->rdbuf();
+    // fprintf(log_file, "%s", ss.c_str() );
+
+    
+
+    //STAMPO LE ROUTING TABLE
+
+    // fflush(log_file);
   }
 
 

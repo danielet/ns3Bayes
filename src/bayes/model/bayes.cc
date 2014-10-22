@@ -321,7 +321,7 @@ Bayes::Collect(void)
 					
 				        if ((mobilityProbability[1] * 100) >= percentageMove )          
 						{
-							NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[1] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);					
+							// NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[1] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);					
 					        if (!m_discovery)
 					        {
 						        Bayes::ForceTopologyDiscovery();   
@@ -332,7 +332,7 @@ Bayes::Collect(void)
 					        m_corr 		= false;	
 					        // bayesCheck = 1;	
 
-					        break;		
+					        // break;		
 			        	}
 			        	// else
 			        	// NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " " <<(mobilityProbability[0] * 100) << " " << percentageMove);			

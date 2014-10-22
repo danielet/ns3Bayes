@@ -337,7 +337,7 @@ private:
 
   uint32_t m_counter_hello;
   uint32_t m_counter_tc;
-  static std::map<int , FILE *> FILE_DIC;
+  static std::map<int , std::ofstream *> FILE_DIC;
 
 };
 
