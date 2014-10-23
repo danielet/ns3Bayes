@@ -83,12 +83,29 @@ function processParametersCHAIN1_MIRROR(startTime , simuTime, sample,varDir ,nam
         % ROUTING TABLES
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-        load routing_tables_1.txt
-        load routing_tables_2.txt
-        load routing_tables_3.txt
-        load routing_tables_4.txt
-        load routing_tables_5.txt
+%         load routing_tables_1.txt
+        inputfile = fopen('routing_tables_1.txt');
+        routing_tables_1 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+        fclose(inputfile)
         
+        inputfile = fopen('routing_tables_2.txt');
+        routing_tables_2 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+        fclose(inputfile)
+        
+        
+        inputfile = fopen('routing_tables_3.txt');
+        routing_tables_3 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+        fclose(inputfile)
+        
+        
+        inputfile = fopen('routing_tables_4.txt');
+        routing_tables_4 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+        fclose(inputfile)
+        
+        
+        inputfile = fopen('routing_tables_5.txt');
+        routing_tables_5 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+        fclose(inputfile)
 
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         % CNG WIN

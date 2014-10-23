@@ -82,12 +82,27 @@ if(ctrlOther == 1)
     % ROUTING TABLES
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    load routing_tables_6.txt
-    load routing_tables_7.txt
-    load routing_tables_8.txt
-    load routing_tables_9.txt
+    
 
-    % load routing_tables_6.txt
+    inputfile = fopen('routing_tables_6.txt');
+    routing_tables_6 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+    fclose(inputfile)
+
+    inputfile = fopen('routing_tables_7.txt');
+    routing_tables_7 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+    fclose(inputfile)
+
+
+    inputfile = fopen('routing_tables_8.txt');
+    routing_tables_8 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+    fclose(inputfile)
+
+
+    inputfile = fopen('routing_tables_9.txt');
+    routing_tables_9 = textscan(inputfile,'%f%d%d%d%s%s%s%s%s%s%s%s%s', 'delimiter', '\t');
+    fclose(inputfile)
+    
+    
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % CNG WIN
