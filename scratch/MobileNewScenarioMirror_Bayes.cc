@@ -474,6 +474,18 @@ if(atoi(argv[5]) == 1){
     Ptr<TcpL4Protocol> tcpl4 = nodes.Get(0)->GetObject<TcpL4Protocol>();
     Simulator::Schedule(Seconds(50.2),&GetBayes,tcpl4,bayes);
 
+}else{
+	if(atoi(argv[5]) == 3){
+		for ( ii = 0; ii < n_nodes; ii++)
+		{		
+				//m_olsr_vector.at(i)->SetAttribute("HoldHello", TimeValue(Seconds(10)));                  
+		        nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HoldTc", TimeValue(Seconds(10)));                  
+				nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HelloInterval", TimeValue(Seconds(0.2))); 
+				nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("TcInterval", TimeValue(Seconds(0.5)));         
+                // nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol().HelloTimerStop();                  
+                // nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol().TcTimerStop();
+		}   
+	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
