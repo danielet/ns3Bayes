@@ -34,6 +34,7 @@
 #include "ns3/olsr-routing-protocol.h"
 #include "ns3/object.h"
 
+#include "ns3/flow-monitor-module.h"
 
 #include "ns3/ipv4.h"
 
@@ -54,49 +55,49 @@ void
 Start_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2 , int id1 , int id2 )
 {
 	//MODEL 1
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (2.0, 0.0, 0.0));
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	//MODEL 2
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	pos2->SetVelocity(Vector (-2.0, 0.0, 0.0));
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 }
 
 void 
 Back_X(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2 , int id1 , int id2 )
 {
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (-2.0, 0.0, 0.0));
 	fileMove  << id1 << " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
 	fileMove  << id2 << " "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
 	pos2->SetVelocity(Vector (2.0, 0.0, 0.0));
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 void 
 Stop(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, 0.0, 0.0));
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());	
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, 0.0, 0.0));
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 
@@ -104,34 +105,34 @@ void
 Start_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
 	//MODEL 1
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, 2.0, 0.0));
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
 	//MODEL 2
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, -2.0, 0.0));
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 void 
 Back_Y(Ptr<ConstantVelocityMobilityModel> pos1, Ptr<ConstantVelocityMobilityModel> pos2, int id1 , int id2)
 {
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition());
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
 	pos1->SetVelocity(Vector (0.0, -2.0, 0.0));
 	fileMove  << id1<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity() << " position "<< pos1->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
+	// NS_LOG_UNCOND("POS1 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos1->GetVelocity());
 	
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition());		
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " old vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";	
 	pos2->SetVelocity(Vector (0.0, 2.0, 0.0));
 	fileMove  << id2<< " " <<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity() << " position "<< pos2->GetPosition() <<"\n";
-	NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
+	// NS_LOG_UNCOND("POS2 Time: "<<Simulator::Now().GetSeconds() << " new vel "<< pos2->GetVelocity());
 }
 
 
@@ -177,7 +178,7 @@ int
 main (int argc, char *argv[])
 {
 	//LogComponentEnable ("OlsrRoutingProtocol", LOG_LEVEL_ALL);	
-        if(argc<3)
+        if(argc < 9)
 	{
 		NS_LOG_UNCOND("Error in the command line. The program needs 2 input parameter, SEED number and M (for Nakagami channel)");
 		exit(1);
@@ -187,10 +188,11 @@ main (int argc, char *argv[])
 	int ii ;
 	int SimuTime = 1000;
 
-	uint16_t port = 20; // FTP port number
+
+//PORT
 	uint32_t maxBytes =1000000000; // xx MB
 	//PARAMETRO CHE PASSO DA RIGA DI COMMANDO 
-	int n_nodes = atoi(argv[3]); // # nodes  
+	
 
 
 	fileMove.open("positionLog.txt");
@@ -198,20 +200,26 @@ main (int argc, char *argv[])
 		printf("ERROR ---------- \n");
 	}
 
-	
-/************************
-		GNUPLOT
-*************************/
-	Gnuplot gnuplot = Gnuplot ("reference-rates.png");
-	m_output.SetStyle (Gnuplot2dDataset::LINES);
 
-	// NS_LOG_UNCOND("Run number: " << atof(argv[1])); //<< atof(argv[2]));              
-	NodeContainer nodes;
-	nodes.Create (n_nodes);
 	
+
+
 	//PARAMETRI CHE RIGUARDANO IL CANALE
 	SeedManager::SetRun(atof(argv[1])); // set the number of the current run
-    uint64_t M = atof(argv[2]); // set the M for Nakagami Channel
+    uint64_t M 		= atof(argv[2]); // set the M for Nakagami Channel
+	int n_nodes 	= atoi(argv[3]); // # nodes  
+	int MOBILITY  	= atoi(argv[4]);
+	int BAYES_FLAG	= atoi(argv[5]);
+	int TCP_TRAFFIC = atoi(argv[6]);
+
+//OLSR PARAM
+	double HoldTc = atof(argv[7]);
+	double HelloInterval = atof(argv[8]);
+	double TCInterval = atof(argv[9]);
+
+// NS_LOG_UNCOND("Run number: " << atof(argv[1])); //<< atof(argv[2]));              
+	NodeContainer nodes;
+	nodes.Create (n_nodes);
 
     //SELECTING  THE TCP ALGORITHM
 	Config::SetDefault ("ns3::TcpL4Protocol::SocketType", StringValue ("ns3::TcpNewReno"));
@@ -255,7 +263,7 @@ INPUT: number of nodes
 //CREATE CHAIN
 double mov_pos = 100.0;
 
-if(atoi(argv[4]) == 0)
+if(MOBILITY == 0)
 {		
 	MobilityHelper mobility;
 	Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();
@@ -355,8 +363,8 @@ else
 ***********************************************/
 
 //QUESTO E' IL MODELLO DI MOVIMENTO A CROCE    
-	if(atoi(argv[4]) == 1){
-		double times[8] = {atof(argv[6]), atof(argv[7]), atof(argv[8]), atof(argv[9]), atof(argv[10]), atof(argv[11]), atof(argv[12]), atof(argv[13])};
+	if(MOBILITY == 1){
+		double times[8] = {atof(argv[10]), atof(argv[11]), atof(argv[12]), atof(argv[13]), atof(argv[14]), atof(argv[15]), atof(argv[16]), atof(argv[17])};
 		Ptr<ConstantVelocityMobilityModel> model1 = nodes.Get(1)->GetObject<ConstantVelocityMobilityModel> ();             			
 		Ptr<ConstantVelocityMobilityModel> model2 = nodes.Get(2)->GetObject<ConstantVelocityMobilityModel> ();             
 		Ptr<ConstantVelocityMobilityModel> model3 = nodes.Get(3)->GetObject<ConstantVelocityMobilityModel> ();
@@ -379,29 +387,28 @@ else
 	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3, 6 ,3);
 			break;
 //NEW
-				case 3: //CHANGE POSITION (3,7)
+			case 3: //CHANGE POSITION (3,7)
 				Simulator::Schedule(Seconds(times[t]),&Start_Y,model7,model3 , 7 ,3);              
 	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model7,model3, 7 ,3);
-				break;
+			break;
 				
-				case 4://CHANGE POSITION (7,3)
+			case 4://CHANGE POSITION (7,3)
 				Simulator::Schedule(Seconds(times[t]),&Back_Y,model7,model3 , 7 ,3);              
-	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model7,model3, 7 ,3);
-
-				break;
+            	Simulator::Schedule(Seconds(times[t]+50),&Stop,model7,model3, 7 ,3);
+			break;
 
 //END NEW
-				case 5://BACK CHANGE POSITION (3,6)
+			case 5://BACK CHANGE POSITION (3,6)
 					Simulator::Schedule(Seconds(times[t]),&Back_X,model6,model3, 6 ,3); 
 		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model6,model3 , 6 ,3);            
 			break;
-				case 6: //BACK CHANGE POSITION (6,1)
-					Simulator::Schedule(Seconds(times[t]),&Back_Y,model1,model6 , 1,6); 
-		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model6, 1,6);            
+			case 6: //BACK CHANGE POSITION (6,1)
+				Simulator::Schedule(Seconds(times[t]),&Back_Y,model1,model6 , 1,6); 
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model6, 1,6);            
 			break;
-				case 7: //BACK CHANGE POSITION (2,1)
-					Simulator::Schedule(Seconds(times[t]),&Back_X,model1,model2, 1,2); 
-		            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2,1,2);            
+			case 7: //BACK CHANGE POSITION (2,1)
+				Simulator::Schedule(Seconds(times[t]),&Back_X,model1,model2, 1,2); 
+	            Simulator::Schedule(Seconds(times[t]+50),&Stop,model1,model2,1,2);            
 			break;
 			}
 	    }
@@ -437,7 +444,17 @@ CHECK NODE' POSITION AND IP ADDRESS
 for(ii=0; ii< n_nodes ; ii++){
 	// printf("VALUE\n");
 	GetPosition(nodes.Get(ii));
+	nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HoldTc", TimeValue(Seconds(HoldTc)));                  
+	nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HelloInterval", TimeValue(Seconds(HelloInterval))); 
+	nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("TcInterval", TimeValue(Seconds(TCInterval)));    
+	// 0.2
+	// 0.5
+			// nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HoldTc", TimeValue(Seconds(100)));        			
+				// nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HelloInterval", TimeValue(Seconds(2))); 
+				// nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("TcInterval", TimeValue(Seconds(5)));              
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**************************** 
@@ -445,9 +462,14 @@ for(ii=0; ii< n_nodes ; ii++){
 *****************************/
 // //QUESTA E' LA PARTE DI BAYES
 
-if(atoi(argv[5]) == 1){
-	int percentageMove = atoi(argv[14]);	
-	printf("%d \n" , percentageMove);
+if(BAYES_FLAG == 1){
+
+
+	
+	int percentageMove 			= atoi(argv[18]);	
+	double HoldTc_BAYES  		= atof(argv[19]);
+	double HelloInterval_BAYES 	= atof(argv[20]);
+	double TCInterval_BAYES 	= atof(argv[21]);
 	std::vector<Ptr<YansWifiPhy> > tx_vector;
 	std::vector<Ptr<DcaTxop> > retx_vector;
     std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector;		
@@ -455,9 +477,7 @@ if(atoi(argv[5]) == 1){
 	for (ii = 0; ii < n_nodes; ii++)
 	{
 	   tx_vector.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetPhy()->GetObject<WifiPhy>()->GetObject<YansWifiPhy>());			
-	   retx_vector.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetMac()->GetObject<WifiMac>()->GetObject<RegularWifiMac>()->GetDcaTxop());	
-
-	   
+	   retx_vector.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetMac()->GetObject<WifiMac>()->GetObject<RegularWifiMac>()->GetDcaTxop());		   
 	   // mac_queue.push_back(devices.Get(ii)->GetObject<WifiNetDevice>()->GetMac()->GetObject<WifiMac>()->GetObject<RegularWifiMac>()->GetDcaTxop());	   
 	   Ptr<Ipv4RoutingProtocol> prot = nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol();
 	   olsr_vector.push_back(DynamicCast<olsr::RoutingProtocol>(prot));   
@@ -467,25 +487,13 @@ if(atoi(argv[5]) == 1){
 	Ptr<Bayes> bayes = CreateObject<Bayes> ();
 	
 	// bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector, mac_queue ,percentageMove);	
-	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector,percentageMove);	
-	bayes->BayesIntervention(50.1,SimuTime); 
+	bayes->Setup(M, sampleTime, n_nodes, tx_vector, retx_vector, olsr_vector, percentageMove, HoldTc_BAYES, HelloInterval_BAYES, TCInterval_BAYES  );	
+	bayes->BayesIntervention(51.0,SimuTime); 
 
- //    //Extract the TCP SOCKET BASE to append Bayesian object
+ // //    //Extract the TCP SOCKET BASE to append Bayesian object
     Ptr<TcpL4Protocol> tcpl4 = nodes.Get(0)->GetObject<TcpL4Protocol>();
-    Simulator::Schedule(Seconds(50.2),&GetBayes,tcpl4,bayes);
+    Simulator::Schedule(Seconds(51.0),&GetBayes,tcpl4,bayes);
 
-}else{
-	if(atoi(argv[5]) == 3){
-		for ( ii = 0; ii < n_nodes; ii++)
-		{		
-				//m_olsr_vector.at(i)->SetAttribute("HoldHello", TimeValue(Seconds(10)));                  
-		        nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HoldTc", TimeValue(Seconds(10)));                  
-				nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("HelloInterval", TimeValue(Seconds(0.2))); 
-				nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol()->SetAttribute("TcInterval", TimeValue(Seconds(0.5)));         
-                // nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol().HelloTimerStop();                  
-                // nodes.Get(ii)->GetObject<Ipv4>()->GetRoutingProtocol().TcTimerStop();
-		}   
-	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -494,14 +502,25 @@ if(atoi(argv[5]) == 1){
 /************************************************************************************** 
 				TRAFFIC GENERATOR
 **************************************************************************************/
-	//FIRST CHAIN
 	
+	
+if(TCP_TRAFFIC == 1)
+{
+
+
+	// LogComponentEnable ("TcpTraceClient", LOG_LEVEL_INFO);
+	// LogComponentEnable ("UdpServer", LOG_LEVEL_INFO);
+
+
+	uint32_t port = 20;
+	//FIRST CHAIN
 	Address sinkLocalAddressReceiver1(InetSocketAddress (interfaces.GetAddress ((int)floor((float)n_nodes/2)), port));
 	BulkSendHelper sourceFTP ("ns3::TcpSocketFactory",sinkLocalAddressReceiver1);
+
 	sourceFTP.SetAttribute ("MaxBytes", UintegerValue (maxBytes));
 	ApplicationContainer sourceAppsFTP = sourceFTP.Install (nodes.Get (0));       
 	sourceAppsFTP.Start (Seconds (50.0));
-	sourceAppsFTP.Stop (Seconds (1000.0));
+	sourceAppsFTP.Stop (Seconds (1000.0 - 3 ));
 
 	// CREATE a TCP receiver:
 	Address sinkLocalAddress(InetSocketAddress (Ipv4Address::GetAny (), port));
@@ -512,7 +531,7 @@ if(atoi(argv[5]) == 1){
 
 
 	NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << interfaces.GetAddress ((int)floor((float)n_nodes/2))); 
-	printf("Node %d\n " , (int)floor((float)n_nodes/2));
+	printf("Node %d\n" , (int)floor((float)n_nodes/2));
 	printf("Node 0\n" );
 	printf("Node %d\n" , (int)ceil((float)n_nodes/2));
 	printf("Node %d\n" , n_nodes-1);
@@ -531,30 +550,100 @@ if(atoi(argv[5]) == 1){
 	ApplicationContainer sink2AppsTraffic = sink2.Install (nodes.Get (n_nodes-1));
 	sink2AppsTraffic.Start (Seconds (50.0));
 	sink2AppsTraffic.Stop (Seconds (1000.0));
+}
+else
+{
 
+
+	// LogComponentEnable ("UdpTraceClient", LOG_LEVEL_INFO);
+ //  	LogComponentEnable ("UdpServer", LOG_LEVEL_INFO);
+
+	NS_LOG_UNCOND("TEST");
+	//UDP TRAFFIC Horizontal Chain
+	uint16_t port = 4000;
+	uint32_t MaxPacketSize = 1472;  // Back off 20 (IP) + 8 (UDP) bytes from MTU
+	
+	UdpServerHelper server_H (port);
+  	ApplicationContainer apps_H = server_H.Install (nodes.Get ((int)floor((float)n_nodes/2)));
+ 	apps_H.Start (Seconds (50.0));
+  	apps_H.Stop (Seconds (1000.0));
+
+  	UdpTraceClientHelper client_H (interfaces.GetAddress ((int)floor((float)n_nodes/2)), port,"");
+  	client_H.SetAttribute ("MaxPacketSize", UintegerValue (MaxPacketSize));
+  	apps_H = client_H.Install (nodes.Get (0));
+  	apps_H.Start (Seconds (50.0));
+  	apps_H.Stop (Seconds (1000.0));
+
+	//UDP TRAFFIC Horizontal Chain
+	UdpServerHelper server_V (port);
+  	ApplicationContainer apps_V = server_V.Install (nodes.Get (n_nodes-1));
+
+ 	apps_V.Start (Seconds (50.0));
+  	apps_V.Stop (Seconds (1000.0));
+
+  	UdpTraceClientHelper client_V (interfaces.GetAddress (n_nodes-1), port,"");
+  	client_V.SetAttribute ("MaxPacketSize", UintegerValue (MaxPacketSize));
+  	apps_V = client_V.Install (nodes.Get ((int)ceil((float)n_nodes/2)));
+  	apps_V.Start (Seconds (50.0));
+  	apps_H.Stop (Seconds (1000.0));
+}
 
 	//CAPIRE CHE INFO UTILI POTREBBE DARMI
-      // AsciiTraceHelper ascii;
-      // wifiPhy.EnableAsciiAll (ascii.CreateFileStream ("wifi-simple-adhoc-grid.tr"));
-      // wifiPhy.EnablePcap ("wifi-simple-adhoc-grid", devices);
+      
       // Trace routing tables
       Ptr<OutputStreamWrapper> routingStream = Create<OutputStreamWrapper> ("wifi-simple-adhoc-grid.routes", std::ios::out);
       olsr.PrintRoutingTableAllEvery (Seconds (0.1), routingStream);
 
 
-	//GNUPLOT PRINT
-	// printf("GNUPLOT PART\n");
-	// gnuplot.AddDataset(m_output);
-	// gnuplot.GenerateOutput (std::cout);
+/************************************************************************************** 
+						PCAP
+**************************************************************************************/
+	
+	// phy.EnablePcap("testPCAP", 0, 1 , false);
+	phy.EnablePcapAll("testPCAP", false);
+// void EnablePcap (std::string prefix, uint32_t nodeid, uint32_t deviceid, bool promiscuous = false);
+// Install FlowMonitor on all nodes
 
 
+
+	FlowMonitorHelper flowmon;
+	Ptr<FlowMonitor> monitor = flowmon.InstallAll();
 
 /************************************************************************************** 
 				RUN SIMULATION
 **************************************************************************************/
 
+
 	Simulator::Stop (Seconds (SimuTime));
 	Simulator::Run ();
+
+
+/************************************************************************************** 
+						FLOW MONITOR
+**************************************************************************************/
+
+	// Print per flow statistics
+  	monitor->CheckForLostPackets ();
+  	Ptr<Ipv4FlowClassifier> classifier = DynamicCast<Ipv4FlowClassifier> (flowmon.GetClassifier ());
+  	std::map<FlowId, FlowMonitor::FlowStats> stats = monitor->GetFlowStats ();
+
+  	for (std::map<FlowId, FlowMonitor::FlowStats>::const_iterator iter = stats.begin (); iter != stats.end (); ++iter)
+    {
+	  Ipv4FlowClassifier::FiveTuple t = classifier->FindFlow (iter->first);
+	
+		if ((t.sourceAddress == Ipv4Address("192.168.1.1") && t.destinationAddress == Ipv4Address("192.168.1.5")) || (t.sourceAddress == Ipv4Address("192.168.1.6") && t.destinationAddress == Ipv4Address("192.168.1.9")))
+        {
+
+    	  NS_LOG_UNCOND("Flow ID: " << iter->first << " Src Addr " << t.sourceAddress << " Dst Addr " << t.destinationAddress);
+    	  NS_LOG_UNCOND("Tx Packets = " << iter->second.txPackets);
+    	  NS_LOG_UNCOND("Rx Packets = " << iter->second.rxPackets);
+    	  NS_LOG_UNCOND("Throughput: "  << iter->second.rxBytes * 8.0 / (iter->second.timeLastRxPacket.GetSeconds()-iter->second.timeFirstTxPacket.GetSeconds()) / 1024  << " Kbps");
+		}
+    }
+  	
+  	monitor->SerializeToXmlFile("TEST.flowmon", true, true);
+
+
 	Simulator::Destroy ();
 	fileMove.close();
 	return 0;

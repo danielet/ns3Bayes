@@ -52,7 +52,8 @@ public:
 	// void Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector,
 	// 			std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector, std::vector<Ptr<DcaTxop> > mac_queue  ,int percentageMoveTmp);
 	void Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector,
-				std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp);
+				std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp,
+				double HoldTc_BAYES_tmp, double HelloInterval_BAYES_tmp, double TCInterval_BAYES_tmp);
 	void BayesIntervention (double start, double stop);        
 	
 	double GetStartTime(void);
@@ -81,8 +82,10 @@ private:
 	std::vector<std::pair<int,int> > m_tx_retx;
 	std::vector<std::pair<int,int> > m_tx_retx_temp;
 	NodeContainer devices ;
-	int percentageMove ;
-
+	int percentageMove;
+	double HoldTc_BAYES;
+	double HelloInterval_BAYES ;
+	double TCInterval_BAYES;
 	static std::map<int , FILE *> FILE_DIC_BayesCtrl;
 
 };

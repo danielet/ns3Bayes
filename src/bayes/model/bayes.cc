@@ -73,7 +73,10 @@ Bayes::Bayes ()
     m_tx_vector(0),
     m_retx_vector(0),
 	m_olsr_vector(0),
-	percentageMove(51)
+	percentageMove(51),
+	HoldTc_BAYES(10),
+	HelloInterval_BAYES(0.5),
+	TCInterval_BAYES(0.5)
 {
 }
 
@@ -89,7 +92,8 @@ Bayes::~Bayes()
 
 void 
 Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<YansWifiPhy> > tx_vector, std::vector<Ptr<DcaTxop> > retx_vector, 
-				std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp)
+				std::vector<Ptr<olsr::RoutingProtocol> > olsr_vector , int percentageMoveTmp,
+				double HoldTc_BAYES_tmp, double HelloInterval_BAYES_tmp, double TCInterval_BAYES_tmp)
 {
 // { std::vector<Ptr<DcaTxop> > mac_queueTmp , 
 	//NAKAGAMI VALUE
@@ -101,6 +105,7 @@ Bayes::Setup (uint64_t M, double sampleTime, uint64_t n_nodes, std::vector<Ptr<Y
 	m_olsr_vector = olsr_vector;
 	m_corruptedIPtables = false;
 	m_discovery = false;
+
 	// mac_queue = mac_queueTmp;
 	percentageMove = percentageMoveTmp;
 	NS_LOG_UNCOND("BAYES " << Simulator::Now().GetSeconds());			
@@ -250,7 +255,7 @@ Bayes::ForceTopologyDiscovery()
 	{		
 				//m_olsr_vector.at(i)->SetAttribute("HoldHello", TimeValue(Seconds(10)));                  
 		        m_olsr_vector.at(i)->SetAttribute("HoldTc", TimeValue(Seconds(10)));                  
-				m_olsr_vector.at(i)->SetAttribute("HelloInterval", TimeValue(Seconds(0.2))); 
+				m_olsr_vector.at(i)->SetAttribute("HelloInterval", TimeValue(Seconds(0.5))); 
 				m_olsr_vector.at(i)->SetAttribute("TcInterval", TimeValue(Seconds(0.5)));         
                 m_olsr_vector.at(i)->HelloTimerStop();                  
                 m_olsr_vector.at(i)->TcTimerStop();
@@ -324,7 +329,39 @@ Bayes::Collect(void)
 							// NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[1] * 100) << "tx:"<<x_values[0]<<"retx:"<<x_values[1]<<"t:"<<x_values[2] <<" Q:" << x_values[3]);					
 					        if (!m_discovery)
 					        {
-						        Bayes::ForceTopologyDiscovery();   
+
+
+						        // Bayes::ForceTopologyDiscovery();   
+						        m_olsr_vector.at(i)->SetAttribute("HoldTc", TimeValue(Seconds(HoldTc_BAYES)));                  
+								m_olsr_vector.at(i)->SetAttribute("HelloInterval", TimeValue(Seconds(HelloInterval_BAYES))); 
+								m_olsr_vector.at(i)->SetAttribute("TcInterval", TimeValue(Seconds(TCInterval_BAYES)));         
+				                m_olsr_vector.at(i)->HelloTimerStop();                  
+				                m_olsr_vector.at(i)->TcTimerStop();
+
+								if(FILE_DIC_BayesCtrl.find(i) == FILE_DIC_BayesCtrl.end())
+								{
+									FILE* log_file;
+									char* fname = (char*)malloc(sizeof(char) * 255);  
+									memset(fname, 0, sizeof(char) * 255);
+									sprintf(fname, "BAYES_CHECK_by_node_%d.txt", i);
+
+									log_file = fopen(fname, "w+");
+									FILE_DIC_BayesCtrl[i] = log_file;
+									if(fname)
+									  free(fname);
+									fprintf(log_file, "%f\t %f \n", Simulator::Now().GetSeconds(), mobilityProbability[1]);
+									fflush(log_file);
+								}
+								else
+								{
+									FILE * log_file = FILE_DIC_BayesCtrl.at(i);
+									fprintf(log_file, "%f\t %f \n", Simulator::Now().GetSeconds(), mobilityProbability[1] );
+									fflush(log_file);
+								}
+
+
+
+
 					        }
 					        m_mob 		= true;                                   
 					        m_discovery = true;
@@ -332,7 +369,7 @@ Bayes::Collect(void)
 					        m_corr 		= false;	
 					        // bayesCheck = 1;	
 
-					        // break;		
+					        break;		
 			        	}
 			        	// else
 			        	// NS_LOG_UNCOND("At time " << Simulator::Now().GetSeconds() << " " <<(mobilityProbability[0] * 100) << " " << percentageMove);			
@@ -340,26 +377,7 @@ Bayes::Collect(void)
 			}//if	
 
 		// MATTEO
-		  if(FILE_DIC_BayesCtrl.find(i) == FILE_DIC_BayesCtrl.end())
-		  {
-		    FILE* log_file;
-		    char* fname = (char*)malloc(sizeof(char) * 255);  
-		    memset(fname, 0, sizeof(char) * 255);
-		    sprintf(fname, "BAYES_CHECK_by_node_%d.txt", i);
-		    
-		    log_file = fopen(fname, "w+");
-		    FILE_DIC_BayesCtrl[i] = log_file;
-		    if(fname)
-		      free(fname);
-		      fprintf(log_file, "%f\t %f \n", Simulator::Now().GetSeconds(), mobilityProbability[1]);
-		      fflush(log_file);
-		    }
-		    else
-		    {
-		      FILE * log_file = FILE_DIC_BayesCtrl.at(i);
-		      fprintf(log_file, "%f\t %f \n", Simulator::Now().GetSeconds(), mobilityProbability[1] );
-		      fflush(log_file);
-		    }
+		  
 
 		}//for
 		
@@ -376,9 +394,9 @@ Bayes::Collect(void)
 					for (uint64_t i = 0; i < m_nodes; i++)
 					{	
 						//m_olsr_vector.at(i)->SetAttribute("HoldHello", TimeValue(Seconds(40)));        			
-						m_olsr_vector.at(i)->SetAttribute("HoldTc", TimeValue(Seconds(100)));        			
+						m_olsr_vector.at(i)->SetAttribute("HoldTc", TimeValue(Seconds(10)));        			
 						m_olsr_vector.at(i)->SetAttribute("HelloInterval", TimeValue(Seconds(2))); 
-						m_olsr_vector.at(i)->SetAttribute("TcInterval", TimeValue(Seconds(5)));              
+						m_olsr_vector.at(i)->SetAttribute("TcInterval", TimeValue(Seconds(2)));              
 						m_olsr_vector.at(i)->HelloTimerStop();                  
 						m_olsr_vector.at(i)->TcTimerStop();    
 					}
@@ -387,11 +405,7 @@ Bayes::Collect(void)
 					m_corr = false;
 				}
 			// }
-		}
-		// else
-		// {
-		// 	NS_LOG_UNCOND(Simulator::Now().GetSeconds()<<" Node "<< i << " " << (mobilityProbability[0] * 100) << " " <<(mobilityProbability[1] * 100) << " " << percentageMove );			
-		// }
+		}		
 }
 
 

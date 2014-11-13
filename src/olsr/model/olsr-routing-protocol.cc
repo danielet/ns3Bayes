@@ -360,7 +360,7 @@ if (counter > 8)
 
       // std::string s  = iter->first.ToString();
       // *os << iter->first;      
-      *log_file << iter->first << "\t";
+      *log_file << iter->second.nextAddr  << "\t" << iter->first << "\t";
       // NS_LOG_UNCOND("ENTRO QUA At time " << Simulator::Now().GetSeconds() << " node " << node <<  " " <<  iter->first);
       counter++;      
     }
